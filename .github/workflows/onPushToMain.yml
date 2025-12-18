@@ -92,8 +92,10 @@ jobs:
           for package_info in $PACKAGES; do
             IFS='|' read -r package_dir package_name tag_name <<< "$package_info"
             echo "Creating release $tag_name for $package_name"
+            # Create release as published (not draft) to trigger onRelease workflow
             gh release create "$tag_name" \
               --title "$tag_name" \
               --notes "Release $tag_name for $package_name" \
-              --target ${{ github.ref_name }} || echo "Release $tag_name may already exist"
+              --target ${{ github.ref_name }} \
+              --latest || echo "Release $tag_name may already exist"
           done
