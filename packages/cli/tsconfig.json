@@ -1,0 +1,12 @@
+{
+  "extends": "@iconoma/typescript-config/base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "@iconoma/studio/*": ["../../apps/studio/dist/*"]
+    },
+    "outDir": "dist"
+  },
+  "exclude": ["node_modules", "dist"]
+}
