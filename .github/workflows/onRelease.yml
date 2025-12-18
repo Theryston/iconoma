@@ -1,0 +1,78 @@
+name: publish
+
+on:
+  release:
+    types: [released]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.4.1
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build packages
+        run: pnpm run build
+
+      - name: Publish packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          # Extract version from tag (remove 'v' prefix if present)
+          RELEASE_VERSION="${RELEASE_TAG#v}"
+          
+          for package_dir in packages/*/; do
+            if [ -f "$package_dir/package.json" ]; then
+              is_private=$(node -p "require('$package_dir/package.json').private || false")
+              
+              # Skip private packages
+              if [ "$is_private" = "true" ]; then
+                echo "Skipping private package in $package_dir"
+                continue
+              fi
+              
+              package_version=$(node -p "require('$package_dir/package.json').version")
+              package_name=$(node -p "require('$package_dir/package.json').name")
+              
+              # Only publish if version matches the release tag
+              if [ "$package_version" != "$RELEASE_VERSION" ]; then
+                echo "Skipping $package_name (version $package_version doesn't match release $RELEASE_VERSION)"
+                continue
+              fi
+              
+              echo "Publishing $package_name version $package_version from $package_dir"
+              
+              cd "$package_dir"
+              
+              # Run prepack if it exists
+              if [ -n "$(node -p "require('./package.json').scripts.prepack || ''")" ]; then
+                pnpm run prepack || true
+              fi
+              
+              # Publish to npm
+              pnpm publish --access public --no-git-checks || echo "Failed to publish $package_name or already published"
+              
+              # Run postpack if it exists
+              if [ -n "$(node -p "require('./package.json').scripts.postpack || ''")" ]; then
+                pnpm run postpack || true
+              fi
+              
+              cd ../..
+            fi
+          done
+
