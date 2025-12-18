@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: read
+  id-token: write
 
 jobs:
   publish:
@@ -17,12 +18,19 @@ jobs:
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: "https://registry.npmjs.org"
+
+      - name: Upgrade npm (required for trusted publishing)
+        run: |
+          npm i -g npm@^11.5.1
+          npm --version
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -35,11 +43,13 @@ jobs:
       - name: Build packages
         run: pnpm run build
 
-      - name: Publish packages
+      - name: Publish packages (Trusted Publishing / OIDC)
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GH_TOKEN: ${{ github.token }}
+        shell: bash
         run: |
+          set -euo pipefail
+
           # Determine release tag based on event type
           if [ -n "${{ github.event.release.tag_name }}" ]; then
             # Triggered by release event
@@ -62,41 +72,25 @@ jobs:
             package_json="${package_dir}package.json"
             if [ -f "$package_json" ]; then
               is_private=$(node -p "(JSON.parse(require('fs').readFileSync('$package_json', 'utf8')).private || false).toString()")
-              
+
               # Skip private packages
               if [ "$is_private" = "true" ]; then
                 echo "Skipping private package in $package_dir"
                 continue
               fi
-              
+
               package_version=$(node -p "JSON.parse(require('fs').readFileSync('$package_json', 'utf8')).version")
               package_name=$(node -p "JSON.parse(require('fs').readFileSync('$package_json', 'utf8')).name")
-              
+
               # Only publish if version matches the release tag
               if [ "$package_version" != "$RELEASE_VERSION" ]; then
                 echo "Skipping $package_name (version $package_version doesn't match release $RELEASE_VERSION)"
                 continue
               fi
-              
-              echo "Publishing $package_name version $package_version from $package_dir"
-              
-              cd "$package_dir"
-              
-              # Run prepack if it exists
-              prepack_script=$(node -p "JSON.parse(require('fs').readFileSync('./package.json', 'utf8')).scripts?.prepack || ''")
-              if [ -n "$prepack_script" ]; then
-                pnpm run prepack || true
-              fi
-              
-              # Publish to npm
-              pnpm publish --access public --no-git-checks || echo "Failed to publish $package_name or already published"
-              
-              # Run postpack if it exists
-              postpack_script=$(node -p "JSON.parse(require('fs').readFileSync('./package.json', 'utf8')).scripts?.postpack || ''")
-              if [ -n "$postpack_script" ]; then
-                pnpm run postpack || true
-              fi
-              
-              cd ../..
+
+              echo "Publishing $package_name@$package_version from $package_dir"
+
+              (cd "$package_dir" && npm publish --access public) || \
+                echo "Failed to publish $package_name or already published"
             fi
           done
