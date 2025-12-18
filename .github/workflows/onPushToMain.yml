@@ -86,6 +86,7 @@ jobs:
       - name: Create Github Releases
         if: ${{ steps.version-check.outputs.skipped == 'false' }}
         env:
+          GH_TOKEN: ${{ github.token }}
           PACKAGES: ${{ steps.version-check.outputs.packages }}
         run: |
           for package_info in $PACKAGES; do
