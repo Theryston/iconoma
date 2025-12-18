@@ -4,7 +4,7 @@
   "version": "0.0.1-beta.2",
   "author": "Theryston Santos @Theryston",
   "bin": {
-    "iconoma": "./bin/run.js"
+    "iconoma": "bin/run.js"
   },
   "private": false,
   "publishConfig": {
@@ -64,7 +64,10 @@
       }
     }
   },
-  "repository": "theryston/iconoma",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theryston/iconoma.git"
+  },
   "scripts": {
     "postbuild": "node scripts/bundle-studio.js",
     "build": "shx rm -rf dist && tsc -b",

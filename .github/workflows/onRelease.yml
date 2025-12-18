@@ -88,9 +88,23 @@ jobs:
                 continue
               fi
 
-              echo "Publishing $package_name@$package_version from $package_dir"
+              # Dist-tag logic:
+              # - stable: latest
+              # - prerelease: extract the identifier after the first '-' and before the first '.'
+              #   Example: 1.2.3-beta.4 => beta
+              DIST_TAG="latest"
+              if [[ "$package_version" == *-* ]]; then
+                pre="${package_version#*-}"     # beta.4
+                DIST_TAG="${pre%%.*}"           # beta
+                # Fallback in case version is like 1.2.3-beta (no .x)
+                if [ -z "$DIST_TAG" ] || [ "$DIST_TAG" = "$pre" ]; then
+                  DIST_TAG="$pre"
+                fi
+              fi
 
-              (cd "$package_dir" && npm publish --access public) || \
+              echo "Publishing $package_name@$package_version (tag: $DIST_TAG) from $package_dir"
+
+              (cd "$package_dir" && npm publish --access public --tag "$DIST_TAG") || \
                 echo "Failed to publish $package_name or already published"
             fi
           done
