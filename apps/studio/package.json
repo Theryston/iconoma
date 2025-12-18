@@ -1,0 +1,40 @@
+{
+  "name": "studio",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@iconoma/ui": "workspace:*",
+    "@tailwindcss/vite": "^4.1.18",
+    "@vitejs/plugin-react": "^5.1.2",
+    "compression": "^1.8.1",
+    "express": "^5.2.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "sirv": "^3.0.2"
+  },
+  "devDependencies": {
+    "@iconoma/eslint-config": "workspace:^",
+    "@iconoma/typescript-config": "workspace:*",
+    "@types/compression": "^1.8.1",
+    "@types/express": "^5.0.6",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "tsx": "^4.21.0",
+    "vite": "npm:rolldown-vite@7.2.5"
+  },
+  "exports": {
+    ".": "server.js"
+  },
+  "pnpm": {
+    "overrides": {
+      "vite": "npm:rolldown-vite@7.2.5"
+    }
+  }
+}
