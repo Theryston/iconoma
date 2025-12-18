@@ -44,7 +44,7 @@ export async function createServer({ port }: CreateServerOptions = {}) {
 
   app.use("*all", async (req, res) => {
     try {
-      const url = req.originalUrl.replace("/", "");
+      const url = req.originalUrl;
 
       let template: string;
       let render: any;
