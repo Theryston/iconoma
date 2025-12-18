@@ -39,7 +39,7 @@ jobs:
           for package_dir in packages/*/; do
             package_json="${package_dir}package.json"
             if [ -f "$package_json" ]; then
-              is_private=$(node -p "require('$package_json').private || false")
+              is_private=$(node -p "(JSON.parse(require('fs').readFileSync('$package_json', 'utf8')).private || false).toString()")
               
               # Skip private packages
               if [ "$is_private" = "true" ]; then
@@ -47,8 +47,8 @@ jobs:
                 continue
               fi
               
-              package_version=$(node -p "require('$package_json').version")
-              package_name=$(node -p "require('$package_json').name")
+              package_version=$(node -p "JSON.parse(require('fs').readFileSync('$package_json', 'utf8')).version")
+              package_name=$(node -p "JSON.parse(require('fs').readFileSync('$package_json', 'utf8')).name")
               
               # Only publish if version matches the release tag
               if [ "$package_version" != "$RELEASE_VERSION" ]; then
@@ -61,7 +61,8 @@ jobs:
               cd "$package_dir"
               
               # Run prepack if it exists
-              if [ -n "$(node -p "require('./package.json').scripts.prepack || ''")" ]; then
+              prepack_script=$(node -p "JSON.parse(require('fs').readFileSync('./package.json', 'utf8')).scripts?.prepack || ''")
+              if [ -n "$prepack_script" ]; then
                 pnpm run prepack || true
               fi
               
@@ -69,7 +70,8 @@ jobs:
               pnpm publish --access public --no-git-checks || echo "Failed to publish $package_name or already published"
               
               # Run postpack if it exists
-              if [ -n "$(node -p "require('./package.json').scripts.postpack || ''")" ]; then
+              postpack_script=$(node -p "JSON.parse(require('fs').readFileSync('./package.json', 'utf8')).scripts?.postpack || ''")
+              if [ -n "$postpack_script" ]; then
                 pnpm run postpack || true
               fi
               
