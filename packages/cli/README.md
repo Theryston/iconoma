@@ -20,7 +20,7 @@ $ npm install -g @iconoma/cli
 $ iconoma COMMAND
 running command...
 $ iconoma (--version)
-@iconoma/cli/0.0.0 win32-x64 node-v20.19.5
+@iconoma/cli/0.0.0 linux-x64 node-v20.19.6
 $ iconoma --help [COMMAND]
 USAGE
   $ iconoma COMMAND
@@ -29,8 +29,6 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`iconoma hello PERSON`](#iconoma-hello-person)
-* [`iconoma hello world`](#iconoma-hello-world)
 * [`iconoma help [COMMAND]`](#iconoma-help-command)
 * [`iconoma plugins`](#iconoma-plugins)
 * [`iconoma plugins add PLUGIN`](#iconoma-plugins-add-plugin)
@@ -42,48 +40,6 @@ USAGE
 * [`iconoma plugins uninstall [PLUGIN]`](#iconoma-plugins-uninstall-plugin)
 * [`iconoma plugins unlink [PLUGIN]`](#iconoma-plugins-unlink-plugin)
 * [`iconoma plugins update`](#iconoma-plugins-update)
-
-## `iconoma hello PERSON`
-
-Say hello
-
-```
-USAGE
-  $ iconoma hello PERSON -f <value>
-
-ARGUMENTS
-  PERSON  Person to say hello to
-
-FLAGS
-  -f, --from=<value>  (required) Who is saying hello
-
-DESCRIPTION
-  Say hello
-
-EXAMPLES
-  $ iconoma hello friend --from oclif
-  hello friend from oclif! (./src/commands/hello/index.ts)
-```
-
-_See code: [src/commands/hello/index.ts](https://github.com/theryston/iconoma/blob/v0.0.0/src/commands/hello/index.ts)_
-
-## `iconoma hello world`
-
-Say hello world
-
-```
-USAGE
-  $ iconoma hello world
-
-DESCRIPTION
-  Say hello world
-
-EXAMPLES
-  $ iconoma hello world
-  hello world! (./src/commands/hello/world.ts)
-```
-
-_See code: [src/commands/hello/world.ts](https://github.com/theryston/iconoma/blob/v0.0.0/src/commands/hello/world.ts)_
 
 ## `iconoma help [COMMAND]`
 
