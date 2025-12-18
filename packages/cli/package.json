@@ -6,6 +6,10 @@
   "bin": {
     "iconoma": "./bin/run.js"
   },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "bugs": "https://github.com/theryston/iconoma/issues",
   "dependencies": {
     "@oclif/core": "^4",
