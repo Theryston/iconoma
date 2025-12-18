@@ -1,3 +1,4 @@
+import "dotenv/config";
 import fs from "node:fs/promises";
 import express from "express";
 import { fileURLToPath } from "node:url";
