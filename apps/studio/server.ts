@@ -9,8 +9,14 @@ const __filename = fileURLToPath(import.meta.url);
 
 const isProduction = __filename.endsWith(".js");
 
-export async function createServer() {
-  const port = await getPort({ port: [4545, 4546, 4547, 4548, 4549, 5173] });
+type CreateServerOptions = {
+  port?: number;
+};
+
+export async function createServer({ port }: CreateServerOptions = {}) {
+  if (!port) {
+    port = await getPort({ port: [4545, 4546, 4547, 4548, 4549, 5173] });
+  }
 
   const templateHtml = isProduction
     ? await fs.readFile("./dist/client/index.html", "utf-8")
