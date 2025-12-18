@@ -3,10 +3,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
       "@iconoma/studio/*": ["../../apps/studio/dist/*"]
     },
     "outDir": "dist"
   },
+  "include": ["./src/**/*"],
   "exclude": ["node_modules", "dist"]
 }

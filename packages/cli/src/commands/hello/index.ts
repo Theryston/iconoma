@@ -1,5 +1,5 @@
+import { getStudio } from "../../get-studio.js";
 import { Args, Command, Flags } from "@oclif/core";
-import { createServer } from "@iconoma/studio";
 
 export default class Hello extends Command {
   static args = {
@@ -25,11 +25,10 @@ hello friend from oclif! (./src/commands/hello/index.ts)
   async run(): Promise<void> {
     const { args, flags } = await this.parse(Hello);
 
-    const server = await createServer();
-    console.log(server);
+    const studio = await getStudio();
 
-    this.log(
-      `hello ${args.person} from ${flags.from}! (./src/commands/hello/index.ts)`
-    );
+    const { url } = await studio.createServer();
+
+    this.log(`Server started at ${url}`);
   }
 }

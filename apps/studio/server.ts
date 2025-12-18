@@ -4,27 +4,26 @@ import { fileURLToPath } from "node:url";
 import getPort from "get-port";
 import http from "node:http";
 import apiRoutes from "./api";
+import path, { dirname } from "node:path";
 
 const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const isProduction = __filename.endsWith(".js");
 
-type CreateServerOptions = {
-  port?: number;
-};
+const templateHtml = isProduction
+  ? await fs.readFile(path.join(__dirname, "client", "index.html"), "utf-8")
+  : "";
+
+type CreateServerOptions = { port?: number };
 
 export async function createServer({ port }: CreateServerOptions = {}) {
   if (!port) {
     port = await getPort({ port: [4545, 4546, 4547, 4548, 4549, 5173] });
   }
 
-  const templateHtml = isProduction
-    ? await fs.readFile("./dist/client/index.html", "utf-8")
-    : "";
-
   const app = express();
 
-  /** @type {import('vite').ViteDevServer | undefined} */
   let vite: import("vite").ViteDevServer | undefined;
   if (!isProduction) {
     const { createServer } = await import("vite");
@@ -38,7 +37,7 @@ export async function createServer({ port }: CreateServerOptions = {}) {
     const compression = (await import("compression")).default;
     const sirv = (await import("sirv")).default;
     app.use(compression());
-    app.use("/", sirv("./dist/client", { extensions: [] }));
+    app.use("/", sirv(path.join(__dirname, "client"), { extensions: [] }));
   }
 
   app.use("/api", apiRoutes);
@@ -47,23 +46,19 @@ export async function createServer({ port }: CreateServerOptions = {}) {
     try {
       const url = req.originalUrl.replace("/", "");
 
-      /** @type {string} */
-      let template;
-      /** @type {import('./src/entry-server.js').render} */
-      let render;
+      let template: string;
+      let render: any;
 
       if (!isProduction) {
-        if (!vite) {
-          return res.status(500).end("Internal Server Error");
-        }
+        if (!vite) return res.status(500).end("Internal Server Error");
 
         template = await fs.readFile("./index.html", "utf-8");
         template = await vite.transformIndexHtml(url, template);
         render = (await vite.ssrLoadModule("/src/entry-server.jsx")).render;
       } else {
         template = templateHtml;
-        const serverEntry = "./server/entry-server.js";
-        render = (await import(serverEntry)).render;
+        // @ts-ignore
+        render = (await import("./server/entry-server.js")).render;
       }
 
       const rendered = await render(url);
@@ -81,7 +76,6 @@ export async function createServer({ port }: CreateServerOptions = {}) {
   });
 
   const url = `http://localhost:${port}`;
-
   const httpServer = http.createServer(app);
 
   await new Promise<void>((resolve, reject) => {
@@ -94,23 +88,14 @@ export async function createServer({ port }: CreateServerOptions = {}) {
       try {
         await vite.close();
       } catch {}
-
       vite = undefined;
     }
-
-    await new Promise<void>((resolve) => {
-      httpServer.close(() => resolve());
-    });
+    await new Promise<void>((resolve) => httpServer.close(() => resolve()));
   }
 
-  return {
-    url,
-    close,
-  };
+  return { url, close };
 }
 
 if (!isProduction) {
-  createServer().then(({ url }) => {
-    console.log(`Server started at ${url}`);
-  });
+  createServer().then(({ url }) => console.log(`Server started at ${url}`));
 }

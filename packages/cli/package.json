@@ -8,7 +8,6 @@
   },
   "bugs": "https://github.com/theryston/iconoma/issues",
   "dependencies": {
-    "@iconoma/studio": "workspace:*",
     "@oclif/core": "^4",
     "@oclif/plugin-help": "^6",
     "@oclif/plugin-plugins": "^5"
@@ -59,6 +58,7 @@
   },
   "repository": "theryston/iconoma",
   "scripts": {
+    "postbuild": "node scripts/bundle-studio.js",
     "build": "shx rm -rf dist && tsc -b",
     "lint": "eslint",
     "postpack": "shx rm -f oclif.manifest.json",
