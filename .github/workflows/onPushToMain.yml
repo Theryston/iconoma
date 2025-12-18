@@ -69,20 +69,6 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Generate oclif README for CLI package
-        if: ${{ steps.version-check.outputs.skipped == 'false' }}
-        run: |
-          if [ -d "packages/cli" ]; then
-            cd packages/cli
-            pnpm exec oclif readme || true
-            cd ../..
-            if [ -n "$(git status --porcelain)" ]; then
-              git add .
-              git commit -m "chore: update README.md" || true
-              git push -u origin ${{ github.ref_name }} || true
-            fi
-          fi
-
       - name: Create Github Releases
         if: ${{ steps.version-check.outputs.skipped == 'false' }}
         env:

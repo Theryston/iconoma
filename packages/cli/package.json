@@ -14,7 +14,6 @@
   "dependencies": {
     "@oclif/core": "^4",
     "@oclif/plugin-help": "^6",
-    "@oclif/plugin-plugins": "^5",
     "figlet": "^1.9.4",
     "gradient-string": "^3.0.0",
     "nanospinner": "^1.2.2",
@@ -54,13 +53,12 @@
     "dirname": "iconoma",
     "commands": "./dist/commands",
     "plugins": [
-      "@oclif/plugin-help",
-      "@oclif/plugin-plugins"
+      "@oclif/plugin-help"
     ],
     "topicSeparator": " ",
     "topics": {
-      "hello": {
-        "description": "Say hello to the world and others"
+      "studio": {
+        "description": "Start the Iconoma Studio"
       }
     }
   },
@@ -73,8 +71,7 @@
     "build": "shx rm -rf dist && tsc -b",
     "lint": "eslint",
     "postpack": "shx rm -f oclif.manifest.json",
-    "prepack": "oclif manifest && oclif readme",
-    "version": "oclif readme && git add README.md"
+    "prepack": "oclif manifest"
   },
   "types": "dist/index.d.ts"
 }
