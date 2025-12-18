@@ -31,10 +31,11 @@ jobs:
         run: |
           packages_to_release=""
           for package_dir in packages/*/; do
-            if [ -f "$package_dir/package.json" ]; then
-              package_name=$(node -p "require('$package_dir/package.json').name")
-              package_version=$(node -p "require('$package_dir/package.json').version")
-              is_private=$(node -p "require('$package_dir/package.json').private || false")
+            package_json="${package_dir}package.json"
+            if [ -f "$package_json" ]; then
+              package_name=$(node -p "require('$package_json').name")
+              package_version=$(node -p "require('$package_json').version")
+              is_private=$(node -p "require('$package_json').private || false")
               
               # Skip private packages
               if [ "$is_private" = "true" ]; then

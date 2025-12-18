@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: "https://registry.npmjs.org"
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -35,10 +35,11 @@ jobs:
         run: |
           # Extract version from tag (remove 'v' prefix if present)
           RELEASE_VERSION="${RELEASE_TAG#v}"
-          
+
           for package_dir in packages/*/; do
-            if [ -f "$package_dir/package.json" ]; then
-              is_private=$(node -p "require('$package_dir/package.json').private || false")
+            package_json="${package_dir}package.json"
+            if [ -f "$package_json" ]; then
+              is_private=$(node -p "require('$package_json').private || false")
               
               # Skip private packages
               if [ "$is_private" = "true" ]; then
@@ -46,8 +47,8 @@ jobs:
                 continue
               fi
               
-              package_version=$(node -p "require('$package_dir/package.json').version")
-              package_name=$(node -p "require('$package_dir/package.json').name")
+              package_version=$(node -p "require('$package_json').version")
+              package_name=$(node -p "require('$package_json').name")
               
               # Only publish if version matches the release tag
               if [ "$package_version" != "$RELEASE_VERSION" ]; then
@@ -75,4 +76,3 @@ jobs:
               cd ../..
             fi
           done
-
