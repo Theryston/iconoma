@@ -1,70 +1,110 @@
 import fs from "node:fs/promises";
 import express from "express";
+import { fileURLToPath } from "node:url";
+import getPort from "get-port";
+import http from "node:http";
+import apiRoutes from "./api";
 
-const isProduction = process.env.NODE_ENV === "production";
-const port = process.env.PORT || 5173;
-const base = process.env.BASE || "/";
+const __filename = fileURLToPath(import.meta.url);
 
-const templateHtml = isProduction
-  ? await fs.readFile("./dist/client/index.html", "utf-8")
-  : "";
+const isProduction = __filename.endsWith(".js");
 
-const app = express();
+export async function createServer() {
+  const port = await getPort({ port: [4545, 4546, 4547, 4548, 4549, 5173] });
 
-/** @type {import('vite').ViteDevServer | undefined} */
-let vite: import("vite").ViteDevServer | undefined;
-if (!isProduction) {
-  const { createServer } = await import("vite");
-  vite = await createServer({
-    server: { middlewareMode: true },
-    appType: "custom",
-    base,
-  });
-  app.use(vite.middlewares);
-} else {
-  const compression = (await import("compression")).default;
-  const sirv = (await import("sirv")).default;
-  app.use(compression());
-  app.use(base, sirv("./dist/client", { extensions: [] }));
-}
+  const templateHtml = isProduction
+    ? await fs.readFile("./dist/client/index.html", "utf-8")
+    : "";
 
-app.use("*all", async (req, res) => {
-  try {
-    const url = req.originalUrl.replace(base, "");
+  const app = express();
 
-    /** @type {string} */
-    let template;
-    /** @type {import('./src/entry-server.js').render} */
-    let render;
+  /** @type {import('vite').ViteDevServer | undefined} */
+  let vite: import("vite").ViteDevServer | undefined;
+  if (!isProduction) {
+    const { createServer } = await import("vite");
+    vite = await createServer({
+      server: { middlewareMode: true },
+      appType: "custom",
+      base: "/",
+    });
+    app.use(vite.middlewares);
+  } else {
+    const compression = (await import("compression")).default;
+    const sirv = (await import("sirv")).default;
+    app.use(compression());
+    app.use("/", sirv("./dist/client", { extensions: [] }));
+  }
 
-    if (!isProduction) {
-      if (!vite) {
-        return res.status(500).end("Internal Server Error");
+  app.use("/api", apiRoutes);
+
+  app.use("*all", async (req, res) => {
+    try {
+      const url = req.originalUrl.replace("/", "");
+
+      /** @type {string} */
+      let template;
+      /** @type {import('./src/entry-server.js').render} */
+      let render;
+
+      if (!isProduction) {
+        if (!vite) {
+          return res.status(500).end("Internal Server Error");
+        }
+
+        template = await fs.readFile("./index.html", "utf-8");
+        template = await vite.transformIndexHtml(url, template);
+        render = (await vite.ssrLoadModule("/src/entry-server.jsx")).render;
+      } else {
+        template = templateHtml;
+        const serverEntry = "../../server/entry-server.js";
+        render = (await import(serverEntry)).render;
       }
 
-      template = await fs.readFile("./index.html", "utf-8");
-      template = await vite.transformIndexHtml(url, template);
-      render = (await vite.ssrLoadModule("/src/entry-server.jsx")).render;
-    } else {
-      template = templateHtml;
-      const serverEntry = "./dist/server/entry-server.js";
-      render = (await import(serverEntry)).render;
+      const rendered = await render(url);
+
+      const html = template
+        .replace(`<!--app-head-->`, rendered.head ?? "")
+        .replace(`<!--app-html-->`, rendered.html ?? "");
+
+      res.status(200).set({ "Content-Type": "text/html" }).send(html);
+    } catch (e: any) {
+      vite?.ssrFixStacktrace(e);
+      console.log(e.stack);
+      res.status(500).end(e.stack);
+    }
+  });
+
+  const url = `http://localhost:${port}`;
+
+  const httpServer = http.createServer(app);
+
+  await new Promise<void>((resolve, reject) => {
+    httpServer.once("error", reject);
+    httpServer.listen(port, "localhost", () => resolve());
+  });
+
+  async function close() {
+    if (vite) {
+      try {
+        await vite.close();
+      } catch {}
+
+      vite = undefined;
     }
 
-    const rendered = await render(url);
-
-    const html = template
-      .replace(`<!--app-head-->`, rendered.head ?? "")
-      .replace(`<!--app-html-->`, rendered.html ?? "");
-
-    res.status(200).set({ "Content-Type": "text/html" }).send(html);
-  } catch (e: any) {
-    vite?.ssrFixStacktrace(e);
-    console.log(e.stack);
-    res.status(500).end(e.stack);
+    await new Promise<void>((resolve) => {
+      httpServer.close(() => resolve());
+    });
   }
-});
 
-app.listen(port, () => {
-  console.log(`Server started at http://localhost:${port}`);
-});
+  return {
+    url,
+    close,
+  };
+}
+
+if (!isProduction) {
+  createServer().then(({ url }) => {
+    console.log(`Server started at ${url}`);
+  });
+}
