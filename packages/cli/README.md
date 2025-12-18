@@ -20,7 +20,7 @@ $ npm install -g @iconoma/cli
 $ iconoma COMMAND
 running command...
 $ iconoma (--version)
-@iconoma/cli/0.0.1-beta.1 linux-x64 node-v20.19.6
+@iconoma/cli/0.0.1-beta.2 linux-x64 node-v20.19.6
 $ iconoma --help [COMMAND]
 USAGE
   $ iconoma COMMAND
