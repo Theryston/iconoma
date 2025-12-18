@@ -1,6 +1,4 @@
-# @iconoma/cli
-
-![logo cli](https://i.imgur.com/tqOikGJ.png)
+<img src="https://i.imgur.com/tqOikGJ.png" alt="logo cli" style="max-width: 300px; margin-bottom: 30px" />
 
 [![github](https://img.shields.io/badge/github-repo-blue?logo=github)](https://github.com/theryston/iconoma)
 [![Version](https://img.shields.io/npm/v/@iconoma/cli.svg)](https://npmjs.org/package/@iconoma/cli)
