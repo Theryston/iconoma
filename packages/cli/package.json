@@ -10,7 +10,11 @@
   "dependencies": {
     "@oclif/core": "^4",
     "@oclif/plugin-help": "^6",
-    "@oclif/plugin-plugins": "^5"
+    "@oclif/plugin-plugins": "^5",
+    "figlet": "^1.9.4",
+    "gradient-string": "^3.0.0",
+    "nanospinner": "^1.2.2",
+    "open": "^11.0.0"
   },
   "devDependencies": {
     "@iconoma/eslint-config": "workspace:*",
