@@ -5,6 +5,7 @@ import Home from "./pages";
 import CreateIcon from "./pages/icons/create";
 import Layout from "./pages/layout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "@iconoma/ui/components/sonner";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,8 @@ export function App({ url }: AppProps = {}) {
             </Route>
           </Routes>
         </Router>
+
+        <Toaster />
       </QueryClientProvider>
     </ThemeProvider>
   );

@@ -2,6 +2,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@plugin "tailwind-scrollbar";
+
 @source "../../../apps/**/*.{ts,tsx}";
 @source "../../../components/**/*.{ts,tsx}";
 @source "../**/*.{ts,tsx}";
@@ -117,7 +119,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-* {
+body {
   font-family: "Geist", sans-serif;
   font-optical-sizing: auto;
 }

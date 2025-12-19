@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 export function useUncommittedChanges() {
   return useQuery({
     queryKey: ["uncommitted-changes"],
-    queryFn: () => fetch("/api/commit/changes").then((res) => res.json()),
+    queryFn: () => axios.get("/api/commit/changes").then((res) => res.data),
   });
 }

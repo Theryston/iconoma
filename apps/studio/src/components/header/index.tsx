@@ -2,7 +2,7 @@ import { Button } from "@iconoma/ui/components/button";
 import { Separator } from "@iconoma/ui/components/separator";
 import { CommitButton } from "./commit-button";
 import { PlusIcon } from "lucide-react";
-import { SettingsButton } from "./settings-button";
+import { ConfigButton } from "./config-button";
 import { Link } from "react-router";
 import { SearchInput } from "./search-input";
 
@@ -30,7 +30,7 @@ export function Header() {
         </div>
 
         <div className="flex items-center gap-2">
-          <SettingsButton />
+          <ConfigButton />
           <Button size="icon" asChild>
             <Link to="/icons/create">
               <PlusIcon />
