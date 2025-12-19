@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, StaticRouter } from "react-router";
 import "@iconoma/ui/globals.css";
 import Home from "./pages";
 import CreateIcon from "./pages/icons/create";
+import IconPreview from "./pages/icons/[iconKey]/preview";
 import Layout from "./pages/layout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@iconoma/ui/components/sonner";
@@ -25,6 +26,10 @@ export function App({ url }: AppProps = {}) {
               <Route element={<Layout />}>
                 <Route path="/" element={<Home />} />
                 <Route path="/icons/create" element={<CreateIcon />} />
+                <Route
+                  path="/icons/:iconKey/preview"
+                  element={<IconPreview />}
+                />
               </Route>
             </Routes>
           </Router>

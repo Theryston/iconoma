@@ -176,7 +176,7 @@ apiRoutes.get("/commit/changes", async (req, res) => {
 apiRoutes.post("/icons/create", async (req, res) => {
   const body = req.body as { name: string; tags: string[]; content: string };
 
-  await createAction({
+  const icon = await createAction({
     type: "CREATE_ICON",
     metadata: {
       name: body.name,
@@ -185,31 +185,37 @@ apiRoutes.post("/icons/create", async (req, res) => {
     },
   });
 
-  const lockFile = await getLockFile();
-  if (!lockFile) {
-    return res.status(500).json({ error: "Lock file not found" });
-  }
-
-  const iconKey = String(body.name);
-  let icon = lockFile.icons[iconKey];
-
-  let attempts = 0;
-  while (!icon && attempts < 20) {
-    await new Promise((resolve) => setTimeout(resolve, 100));
-    const updatedLockFile = await getLockFile();
-
-    if (updatedLockFile) {
-      icon = updatedLockFile.icons[iconKey];
-    }
-
-    attempts++;
-  }
-
   if (!icon) {
     return res.status(500).json({ error: "Icon not found after creation" });
   }
 
   res.json({ icon, pascalName: toPascalFromSeparated(body.name) });
+});
+
+apiRoutes.get("/icons/:iconKey", async (req, res) => {
+  const iconKey = req.params.iconKey;
+
+  if (!iconKey) {
+    return res.status(400).json({ error: "Icon key is required" });
+  }
+
+  const lockFile = await getLockFile();
+  if (!lockFile) {
+    return res.status(404).json({ error: "Lock file not found" });
+  }
+
+  const icon = lockFile.icons[iconKey];
+  if (!icon) {
+    return res.status(404).json({ error: "Icon not found" });
+  }
+
+  const svgContent = await getIconContent(icon);
+
+  res.json({
+    icon,
+    pascalName: toPascalFromSeparated(iconKey),
+    svgContent,
+  });
 });
 
 apiRoutes.get("/icons/content", async (req, res) => {

@@ -228,8 +228,8 @@ async function createIcon(action: ActionModel) {
     );
   }
 
-  const { name, tags, content } = action.metadata;
-  const iconKey = String(name);
+  const { name: iconName, tags, content } = action.metadata;
+  const iconKey = iconName.toLowerCase().replace(/ /g, "-");
 
   const config = await getConfig();
   if (!config) throw new Error("Config not found");
@@ -249,14 +249,14 @@ async function createIcon(action: ActionModel) {
   let icon = lockFile.icons[iconKey];
 
   if (icon) {
-    icon.name = name;
+    icon.name = iconKey;
     icon.tags = tags;
     icon.svg.content = svgContent;
     icon.svg.hash = svgHash;
     icon.targets = {};
   } else {
     icon = {
-      name,
+      name: iconKey,
       tags,
       svg: {
         content: svgContent,

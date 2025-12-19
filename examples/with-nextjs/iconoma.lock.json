@@ -172,6 +172,194 @@
           }
         }
       }
+    },
+    "aaaaaxxx": {
+      "name": "aaaaaxxx",
+      "tags": [
+        "dedeade"
+      ],
+      "svg": {
+        "content": "file://icons\\aaaaaxxx.svg",
+        "hash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a",
+            "configHash": "0bdf9c9fbacdb26324a4ed19fce08467994b32fb92b6e8722fe094b4f161b27c"
+          }
+        }
+      }
+    },
+    "dedea": {
+      "name": "dedea",
+      "tags": [
+        "dedea"
+      ],
+      "svg": {
+        "content": "file://icons\\dedea.svg",
+        "hash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a",
+            "configHash": "0bdf9c9fbacdb26324a4ed19fce08467994b32fb92b6e8722fe094b4f161b27c"
+          }
+        }
+      }
+    },
+    "uii xii": {
+      "name": "uii xii",
+      "tags": [
+        "xii",
+        "maa"
+      ],
+      "svg": {
+        "content": "file://icons\\uii xii.svg",
+        "hash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a",
+            "configHash": "0bdf9c9fbacdb26324a4ed19fce08467994b32fb92b6e8722fe094b4f161b27c"
+          }
+        }
+      }
+    },
+    "aaa-aaa": {
+      "name": "aaa aaa",
+      "tags": [
+        "aaa",
+        "dede"
+      ],
+      "svg": {
+        "content": "file://icons\\aaa-aaa.svg",
+        "hash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a",
+            "configHash": "0bdf9c9fbacdb26324a4ed19fce08467994b32fb92b6e8722fe094b4f161b27c"
+          }
+        }
+      }
+    },
+    "aaa-aaaxx": {
+      "name": "aaa aaaxx",
+      "tags": [
+        "aaa",
+        "dede"
+      ],
+      "svg": {
+        "content": "file://icons\\aaa-aaaxx.svg",
+        "hash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a",
+            "configHash": "0bdf9c9fbacdb26324a4ed19fce08467994b32fb92b6e8722fe094b4f161b27c"
+          }
+        }
+      }
+    },
+    "dede-dede": {
+      "name": "dede dede",
+      "tags": [
+        "deded"
+      ],
+      "svg": {
+        "content": "file://icons\\dede-dede.svg",
+        "hash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a",
+            "configHash": "0bdf9c9fbacdb26324a4ed19fce08467994b32fb92b6e8722fe094b4f161b27c"
+          }
+        }
+      }
+    },
+    "dede-deeeee": {
+      "name": "dede deeeee",
+      "tags": [],
+      "svg": {
+        "content": "file://icons\\dede-deeeee.svg",
+        "hash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a",
+            "configHash": "0bdf9c9fbacdb26324a4ed19fce08467994b32fb92b6e8722fe094b4f161b27c"
+          }
+        }
+      }
+    },
+    "lll-ll": {
+      "name": "lll-ll",
+      "tags": [],
+      "svg": {
+        "content": "file://icons\\lll-ll.svg",
+        "hash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a",
+            "configHash": "0bdf9c9fbacdb26324a4ed19fce08467994b32fb92b6e8722fe094b4f161b27c"
+          }
+        }
+      }
+    },
+    "iconoma-studio": {
+      "name": "iconoma-studio",
+      "tags": [
+        "iconoma",
+        "studio"
+      ],
+      "svg": {
+        "content": "file://icons\\iconoma-studio.svg",
+        "hash": "134e9787d0521b6a26da2f37c99310d07fee46e66257263fc81e2eddb4f551e6"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "134e9787d0521b6a26da2f37c99310d07fee46e66257263fc81e2eddb4f551e6",
+            "configHash": "0bdf9c9fbacdb26324a4ed19fce08467994b32fb92b6e8722fe094b4f161b27c"
+          }
+        }
+      }
+    },
+    "pop-plkp": {
+      "name": "pop-plkp",
+      "tags": [],
+      "svg": {
+        "content": "file://icons\\pop-plkp.svg",
+        "hash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a",
+            "configHash": "0bdf9c9fbacdb26324a4ed19fce08467994b32fb92b6e8722fe094b4f161b27c"
+          }
+        }
+      }
     }
   }
 }
