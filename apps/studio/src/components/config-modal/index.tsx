@@ -81,13 +81,6 @@ export function ConfigModal({
         null,
         2
       ),
-      prettier: JSON.stringify(
-        {
-          semi: false,
-        },
-        null,
-        2
-      ),
       extraTargets: [],
     },
   });
@@ -108,21 +101,20 @@ export function ConfigModal({
     setPendingConfig(null);
   }, []);
 
-  const resetForm = useCallback(() => {
-    setStep(1);
-    setPendingChanges(null);
-    setPendingConfig(null);
-    form.reset({
-      ...config,
-      prettier: JSON.stringify(config.prettier, null, 2),
-      svgo: JSON.stringify(config.svgo, null, 2),
-    });
-  }, [form, config]);
+  const resetForm = useCallback(
+    (newConfig?: Config) => {
+      const configToUse = newConfig ?? config;
 
-  const handleComplete = useCallback(() => {
-    onOpenChangeProp(false);
-    resetForm();
-  }, [onOpenChangeProp, resetForm]);
+      setStep(1);
+      setPendingChanges(null);
+      setPendingConfig(null);
+      form.reset({
+        ...configToUse,
+        svgo: JSON.stringify(configToUse.svgo, null, 2),
+      });
+    },
+    [form, config]
+  );
 
   const onOpenChange = useCallback(
     (open: boolean) => {
@@ -149,8 +141,8 @@ export function ConfigModal({
 
     if (isOnboarding) {
       onOpenChange(true);
-    } else if (config) {
-      resetForm();
+    } else {
+      resetForm(config);
     }
   }, [isOnboarding, config, form, isLoadingConfig, onOpenChange]);
 
@@ -176,7 +168,10 @@ export function ConfigModal({
           <ConfigFormStep
             form={form}
             onNextStep={handleNextStep}
-            onComplete={handleComplete}
+            onComplete={() => {
+              onOpenChangeProp(false);
+              resetForm();
+            }}
           />
         ) : (
           pendingChanges &&
@@ -184,7 +179,9 @@ export function ConfigModal({
             <ConfigChangesStep
               changes={pendingChanges}
               config={pendingConfig}
-              onConfirm={handleComplete}
+              onConfirm={() => {
+                onOpenChangeProp(false);
+              }}
               onBack={handleBack}
             />
           )

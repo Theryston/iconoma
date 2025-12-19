@@ -23,16 +23,9 @@
       }
     ]
   },
-  "prettier": {
-    "semi": false
-  },
   "extraTargets": [
     {
       "targetId": "react",
-      "outputPath": "./components/icons.tsx"
-    },
-    {
-      "targetId": "react-native",
       "outputPath": "./components/icons.tsx"
     }
   ]

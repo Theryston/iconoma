@@ -12,11 +12,10 @@ export type Config = {
   svg: SvgConfig;
   extraTargets: ExtraTarget[];
   svgo: any;
-  prettier: any;
 };
 
 export type LockFileIcon = {
-  title: string;
+  name: string;
   tags: string[];
   svg: LockFileIconSvg;
   targets: Record<string, LockFileIconTarget>;
@@ -38,19 +37,25 @@ export type LockFileBuiltFrom = {
 };
 
 export type LockFile = {
+  configHash: string;
   icons: Record<string, LockFileIcon>;
 };
 
 export type Change = {
   type:
-    | "DELETE_FILE"
-    | "CREATE_SVG_FILE"
+    | "MIGRATE_SVG_TO_LOCK"
+    | "MIGRATE_SVG_TO_FILE"
     | "ADD_EXTRA_TARGET"
     | "REMOVE_EXTRA_TARGET"
-    | "CHANGE_EXTRA_TARGET"
-    | "FORMAT_FILES"
     | "REGENERATE_ALL";
   filePath?: string;
   iconKey?: string;
+  metadata?: { iconKey: string };
   targetId?: string;
+};
+
+export type ActionModel = Change & {
+  status: "pending" | "processing" | "completed" | "failed";
+  percentage: number;
+  error?: string;
 };

@@ -1,6 +1,7 @@
 import path from "node:path";
 import fs from "node:fs/promises";
 import { Config, LockFile, LockFileIcon } from "./types";
+import crypto from "node:crypto";
 
 export async function getPwd() {
   return process.env.ICONOMA_PWD || process.cwd();
@@ -25,7 +26,22 @@ export async function getConfig(): Promise<Config | null> {
 export async function setConfig(config: Config): Promise<void> {
   const pwd = await getPwd();
   const configPath = path.join(pwd, "iconoma.config.json");
-  await fs.writeFile(configPath, JSON.stringify(config, null, 2), "utf-8");
+  const content = JSON.stringify(config, null, 2);
+  const hash = crypto.createHash("sha256").update(content).digest("hex");
+  await fs.writeFile(configPath, content, "utf-8");
+
+  let lockFile = await getLockFile();
+
+  if (!lockFile) {
+    lockFile = {
+      configHash: hash,
+      icons: {},
+    };
+  }
+
+  lockFile.configHash = hash;
+
+  await setLockFile(lockFile);
 }
 
 export async function getLockFile(): Promise<LockFile | null> {
@@ -42,6 +58,12 @@ export async function getLockFile(): Promise<LockFile | null> {
   const lockString = await fs.readFile(lockPath, "utf-8");
 
   return JSON.parse(lockString);
+}
+
+export async function setLockFile(lockFile: LockFile): Promise<void> {
+  const pwd = await getPwd();
+  const lockPath = path.join(pwd, "iconoma.lock.json");
+  await fs.writeFile(lockPath, JSON.stringify(lockFile, null, 2), "utf-8");
 }
 
 export async function getSvgContent(
@@ -66,4 +88,25 @@ export async function getSvgContent(
   } else {
     return icon.svg.content;
   }
+}
+
+export async function getIconContent(icon: LockFileIcon): Promise<string> {
+  const isFile = icon.svg.content.startsWith("file://");
+
+  if (!isFile) return icon.svg.content;
+
+  const iconPath = icon.svg.content.replace("file://", "");
+  const pwd = await getPwd();
+  const filePath = path.join(pwd, iconPath);
+  const content = await fs.readFile(filePath, "utf-8");
+  return content;
+}
+
+export function toPascalFromSeparated(input: string): string {
+  return String(input)
+    .trim()
+    .split(/[^a-zA-Z0-9]+/)
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join("");
 }

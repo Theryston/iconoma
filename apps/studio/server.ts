@@ -25,6 +25,8 @@ export async function createServer({ port }: CreateServerOptions = {}) {
 
   const app = express();
 
+  app.use("/api", apiRoutes);
+
   let vite: import("vite").ViteDevServer | undefined;
   if (!isProduction) {
     const { createServer } = await import("vite");
@@ -40,8 +42,6 @@ export async function createServer({ port }: CreateServerOptions = {}) {
     app.use(compression());
     app.use("/", sirv(path.join(__dirname, "client"), { extensions: [] }));
   }
-
-  app.use("/api", apiRoutes);
 
   app.use("*all", async (req, res) => {
     try {

@@ -31,6 +31,7 @@ import {
 import { useConfigChanges, useSetConfig } from "../../../hooks/config";
 import { toast } from "@iconoma/ui/components/sonner";
 import type { Change } from "../../../../api/types";
+import { ScrollArea } from "@iconoma/ui/components/scroll-area";
 
 export function ConfigFormStep({
   form,
@@ -61,7 +62,7 @@ export function ConfigFormStep({
 
     try {
       const response = await configChanges.mutateAsync(validatedConfig);
-      const changes: Change[] = response.changes || [];
+      const changes: Change[] = response?.changes || [];
 
       if (changes.length === 0) {
         await setConfig.mutateAsync({
@@ -73,121 +74,102 @@ export function ConfigFormStep({
       } else {
         onNextStep(changes, validatedConfig);
       }
-    } catch (error) {
-      toast.error("Failed to check changes. Please try again.");
-      console.error("Error checking changes:", error);
+    } catch {
+      // ignore
     }
   });
 
   return (
     <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-4">
-      {!form.watch("svg.inLock") && (
-        <Controller
-          name="svg.folder"
-          control={form.control}
-          render={({ field, fieldState }) => (
-            <Field>
-              <FieldLabel>SVG Folder</FieldLabel>
-              <Input
-                placeholder="e.g. ./icons"
-                value={field.value ?? ""}
-                onChange={field.onChange}
-              />
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-            </Field>
-          )}
-        />
-      )}
-
-      <Controller
-        name="svg.inLock"
-        control={form.control}
-        render={({ field, fieldState }) => (
-          <Field>
-            <Label className="flex items-start gap-3 rounded-lg border p-3">
-              <Checkbox
-                checked={field.value}
-                onCheckedChange={(e) => {
-                  field.onChange(e);
-                  form.setValue("svg.folder", null, {
-                    shouldValidate: true,
-                  });
-                  form.clearErrors("extraTargets");
-                }}
-              />
-              <div className="grid gap-1.5 font-normal">
-                <p className="text-sm leading-none">
-                  SVG in Lock (NOT RECOMMENDED)
-                </p>
-                <p className="text-muted-foreground text-xs">
-                  When enabled, the SVG will not be exported to a folder, it
-                  will be included in the iconoma.lock.json file
-                </p>
-              </div>
-            </Label>
-            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-          </Field>
-        )}
-      />
-
-      <ExtraTargetsSection form={form} />
-
-      <Accordion
-        type="multiple"
-        value={accordionValue}
-        onValueChange={setAccordionValue}
-      >
-        <Controller
-          name="svgo"
-          control={form.control}
-          render={({ field, fieldState }) => (
-            <AccordionItem value="svgo">
-              <AccordionTrigger
-                className={cn(fieldState.error && "text-destructive")}
-              >
-                SVGO Config
-              </AccordionTrigger>
-              <AccordionContent>
+      <ScrollArea className="max-h-[60vh]">
+        <div className="flex flex-col gap-4">
+          {!form.watch("svg.inLock") && (
+            <Controller
+              name="svg.folder"
+              control={form.control}
+              render={({ field, fieldState }) => (
                 <Field>
-                  <SVGOConfig
-                    onConfigChange={field.onChange}
-                    value={field.value}
-                    onSubmit={handleSubmit}
+                  <FieldLabel>SVG Folder</FieldLabel>
+                  <Input
+                    placeholder="e.g. ./icons"
+                    value={field.value ?? ""}
+                    onChange={field.onChange}
                   />
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
                   )}
                 </Field>
-              </AccordionContent>
-            </AccordionItem>
+              )}
+            />
           )}
-        />
-        <Controller
-          name="prettier"
-          control={form.control}
-          render={({ field, fieldState }) => (
-            <AccordionItem value="prettier">
-              <AccordionTrigger
-                className={cn(fieldState.error && "text-destructive")}
-              >
-                Prettier Config
-              </AccordionTrigger>
-              <AccordionContent>
-                <Field>
-                  <PrettierConfig
-                    onConfigChange={field.onChange}
-                    value={field.value}
-                    onSubmit={handleSubmit}
+
+          <Controller
+            name="svg.inLock"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <Field>
+                <Label className="flex items-start gap-3 rounded-lg border p-3">
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={(e) => {
+                      field.onChange(e);
+                      form.setValue("svg.folder", null, {
+                        shouldValidate: true,
+                      });
+                      form.clearErrors("extraTargets");
+                    }}
                   />
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                </Field>
-              </AccordionContent>
-            </AccordionItem>
-          )}
-        />
-      </Accordion>
+                  <div className="grid gap-1.5 font-normal">
+                    <p className="text-sm leading-none">
+                      SVG in Lock (NOT RECOMMENDED)
+                    </p>
+                    <p className="text-muted-foreground text-xs">
+                      When enabled, the SVG will not be exported to a folder, it
+                      will be included in the iconoma.lock.json file
+                    </p>
+                  </div>
+                </Label>
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
+              </Field>
+            )}
+          />
+
+          <ExtraTargetsSection form={form} />
+          <Accordion
+            type="multiple"
+            value={accordionValue}
+            onValueChange={setAccordionValue}
+          >
+            <Controller
+              name="svgo"
+              control={form.control}
+              render={({ field, fieldState }) => (
+                <AccordionItem value="svgo">
+                  <AccordionTrigger
+                    className={cn(fieldState.error && "text-destructive")}
+                  >
+                    SVGO Config
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <Field>
+                      <SVGOConfig
+                        onConfigChange={field.onChange}
+                        value={field.value}
+                        onSubmit={handleSubmit}
+                      />
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </Field>
+                  </AccordionContent>
+                </AccordionItem>
+              )}
+            />
+          </Accordion>
+        </div>
+      </ScrollArea>
 
       <div className="flex justify-end gap-2 pt-2">
         <Button type="button" variant="outline" onClick={() => onComplete()}>
@@ -205,38 +187,6 @@ export function ConfigFormStep({
         </Button>
       </div>
     </form>
-  );
-}
-
-function PrettierConfig({
-  value,
-  onConfigChange,
-  onSubmit,
-}: {
-  value: string;
-  onConfigChange: (config: string) => void;
-  onSubmit: () => void;
-}) {
-  const { theme } = useTheme();
-
-  return (
-    <div className="h-full w-full overflow-hidden">
-      <SandpackProvider
-        theme={theme === "system" ? "auto" : theme}
-        files={{
-          "index.json": {
-            code: value,
-          },
-        }}
-        options={{
-          activeFile: "index.json",
-        }}
-      >
-        <SandpackLayout>
-          <ConfigEditor onConfigChange={onConfigChange} onSubmit={onSubmit} />
-        </SandpackLayout>
-      </SandpackProvider>
-    </div>
   );
 }
 
@@ -322,7 +272,7 @@ function ExtraTargetsSection({ form }: { form: UseFormReturn<ConfigInput> }) {
           ...(currentTargets ?? []),
           {
             targetId,
-            outputPath: `./components/icons${targetConfig.extension[0]}`,
+            outputPath: `./components/${targetConfig.id}/icons/{name}${targetConfig.extension[0]}`,
           },
         ];
         form.setValue("extraTargets", newTargets, { shouldValidate: true });

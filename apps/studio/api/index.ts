@@ -1,9 +1,29 @@
 import { Router, json } from "express";
 import { getConfig, getLockFile, getPwd, setConfig } from "./utils";
 import path from "node:path";
-import { Change, Config } from "./types";
+import { Change, ActionModel, Config } from "./types";
+import { promise as fastq } from "fastq";
+import { table } from "./db";
+import { actionsWorker } from "./actions";
+
+const actionsTable = table<ActionModel>("actions");
+
+const actionsQueue = fastq(actionsWorker, 1);
 
 const apiRoutes: Router = Router();
+
+async function createAction(action: Change) {
+  const createdActionId: number = actionsTable.create({
+    ...action,
+    status: "pending",
+    percentage: 0,
+  });
+
+  return await actionsQueue.push({
+    actionId: createdActionId,
+    table: actionsTable,
+  });
+}
 
 apiRoutes.use(json());
 
@@ -57,7 +77,7 @@ apiRoutes.post("/config/changes", async (req, res) => {
 
   const icons = lockFile?.icons || {};
 
-  for (const iconKey in Object.keys(icons)) {
+  for (const iconKey of Object.keys(icons)) {
     const icon = icons[iconKey];
     if (!icon) continue;
 
@@ -69,8 +89,11 @@ apiRoutes.post("/config/changes", async (req, res) => {
 
       if (isFile && newConfig.svg.inLock) {
         changes.push({
-          type: "DELETE_FILE",
+          type: "MIGRATE_SVG_TO_LOCK",
           filePath: icon.svg.content.replace("file://", ""),
+          metadata: {
+            iconKey,
+          },
         });
       }
 
@@ -79,7 +102,7 @@ apiRoutes.post("/config/changes", async (req, res) => {
         const filePath = path.join(newConfig.svg.folder, iconKey + ".svg");
 
         changes.push({
-          type: "CREATE_SVG_FILE",
+          type: "MIGRATE_SVG_TO_FILE",
           filePath,
           iconKey,
         });
@@ -110,23 +133,24 @@ apiRoutes.post("/config/changes", async (req, res) => {
 
     for (const changedTarget of changedExtraTargets) {
       const filePath = changedTarget.outputPath.replace("{name}", iconKey);
+      const originalFilePath = currentConfig.extraTargets
+        .find((t) => t.targetId === changedTarget.targetId)
+        ?.outputPath.replace("{name}", iconKey);
 
       changes.push({
-        type: "CHANGE_EXTRA_TARGET",
+        type: "REMOVE_EXTRA_TARGET",
+        targetId: changedTarget.targetId,
+        filePath: originalFilePath,
+        iconKey,
+      });
+
+      changes.push({
+        type: "ADD_EXTRA_TARGET",
         targetId: changedTarget.targetId,
         filePath,
         iconKey,
       });
     }
-  }
-
-  if (
-    JSON.stringify(newConfig.prettier) !==
-    JSON.stringify(currentConfig.prettier)
-  ) {
-    changes.push({
-      type: "FORMAT_FILES",
-    });
   }
 
   if (JSON.stringify(newConfig.svgo) !== JSON.stringify(currentConfig.svgo)) {
@@ -141,11 +165,18 @@ apiRoutes.post("/config/changes", async (req, res) => {
 apiRoutes.post("/config", async (req, res) => {
   const body = req.body as { config: Config; changes: Change[] };
 
-  // TODO: Apply changes
-
   await setConfig(body.config);
 
+  for (const change of body.changes) {
+    createAction(change);
+  }
+
   res.json({ success: true });
+});
+
+apiRoutes.get("/actions", async (req, res) => {
+  const actions = actionsTable.getAll();
+  res.json({ actions });
 });
 
 apiRoutes.get("/commit/changes", async (req, res) => {
