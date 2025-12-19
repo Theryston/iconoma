@@ -3,24 +3,200 @@
 import * as React from "react";
 import type { SVGProps } from "react";
 
-// <iconoma-icon key="home" name="Home">
-export const Home = (props: SVGProps<SVGSVGElement>) => (
+// <iconoma-icon key="iconoma" name="Iconoma">
+export const Iconoma = (props: SVGProps<SVGSVGElement>) => (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 700 700"
     fill="none"
-    stroke="currentColor"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    strokeWidth={2}
-    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
     width="1em"
     height="1em"
     {...props}
   >
-    <path d="M3 10.5 12 3l9 7.5" />
-    <path d="M5 9.5V21h14V9.5" />
-    <path d="M9 21v-7h6v7" />
+    <path
+      d="M150 250H155H350H550H685C642.5 105 507.5 0 350 0C192.5 0 57.5 105 15 250H150Z"
+      fill="currentColor"
+    />
+    <path
+      d="M575 300V350C575 392.5 542.5 425 500 425H435C402.5 425 375 405 365 372.5L350 340L335 375C325 405 297.5 425 265 425H200C157.5 425 125 392.5 125 350V300H5C2.5 317.5 0 332.5 0 350C0 542.5 157.5 700 350 700C542.5 700 700 542.5 700 350C700 332.5 697.5 317.5 695 300H575ZM497.5 495C457.5 530 405 550 350 550C335 550 325 540 325 525C325 510 335 500 350 500C392.5 500 432.5 485 465 455C475 445 490 447.5 500 457.5C510 470 510 485 497.5 495Z"
+      fill="currentColor"
+    />
   </svg>
 );
 // </iconoma-icon>
 
+// <iconoma-icon key="xxx" name="Xxx">
+export const Xxx = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 700 700"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    {...props}
+  >
+    <path
+      d="M150 250H155H350H550H685C642.5 105 507.5 0 350 0C192.5 0 57.5 105 15 250H150Z"
+      fill="currentColor"
+    />
+    <path
+      d="M575 300V350C575 392.5 542.5 425 500 425H435C402.5 425 375 405 365 372.5L350 340L335 375C325 405 297.5 425 265 425H200C157.5 425 125 392.5 125 350V300H5C2.5 317.5 0 332.5 0 350C0 542.5 157.5 700 350 700C542.5 700 700 542.5 700 350C700 332.5 697.5 317.5 695 300H575ZM497.5 495C457.5 530 405 550 350 550C335 550 325 540 325 525C325 510 335 500 350 500C392.5 500 432.5 485 465 455C475 445 490 447.5 500 457.5C510 470 510 485 497.5 495Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+// </iconoma-icon>
+
+// <iconoma-icon key="aaa" name="Aaa">
+export const Aaa = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 700 700"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    {...props}
+  >
+    <path
+      d="M150 250H155H350H550H685C642.5 105 507.5 0 350 0C192.5 0 57.5 105 15 250H150Z"
+      fill="currentColor"
+    />
+    <path
+      d="M575 300V350C575 392.5 542.5 425 500 425H435C402.5 425 375 405 365 372.5L350 340L335 375C325 405 297.5 425 265 425H200C157.5 425 125 392.5 125 350V300H5C2.5 317.5 0 332.5 0 350C0 542.5 157.5 700 350 700C542.5 700 700 542.5 700 350C700 332.5 697.5 317.5 695 300H575ZM497.5 495C457.5 530 405 550 350 550C335 550 325 540 325 525C325 510 335 500 350 500C392.5 500 432.5 485 465 455C475 445 490 447.5 500 457.5C510 470 510 485 497.5 495Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+// </iconoma-icon>
+
+// <iconoma-icon key="mama" name="Mama">
+export const Mama = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 700 700"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    {...props}
+  >
+    <path
+      d="M150 250H155H350H550H685C642.5 105 507.5 0 350 0C192.5 0 57.5 105 15 250H150Z"
+      fill="currentColor"
+    />
+    <path
+      d="M575 300V350C575 392.5 542.5 425 500 425H435C402.5 425 375 405 365 372.5L350 340L335 375C325 405 297.5 425 265 425H200C157.5 425 125 392.5 125 350V300H5C2.5 317.5 0 332.5 0 350C0 542.5 157.5 700 350 700C542.5 700 700 542.5 700 350C700 332.5 697.5 317.5 695 300H575ZM497.5 495C457.5 530 405 550 350 550C335 550 325 540 325 525C325 510 335 500 350 500C392.5 500 432.5 485 465 455C475 445 490 447.5 500 457.5C510 470 510 485 497.5 495Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+// </iconoma-icon>
+
+// <iconoma-icon key="que" name="Que">
+export const Que = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 700 700"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    {...props}
+  >
+    <path
+      d="M150 250H155H350H550H685C642.5 105 507.5 0 350 0C192.5 0 57.5 105 15 250H150Z"
+      fill="currentColor"
+    />
+    <path
+      d="M575 300V350C575 392.5 542.5 425 500 425H435C402.5 425 375 405 365 372.5L350 340L335 375C325 405 297.5 425 265 425H200C157.5 425 125 392.5 125 350V300H5C2.5 317.5 0 332.5 0 350C0 542.5 157.5 700 350 700C542.5 700 700 542.5 700 350C700 332.5 697.5 317.5 695 300H575ZM497.5 495C457.5 530 405 550 350 550C335 550 325 540 325 525C325 510 335 500 350 500C392.5 500 432.5 485 465 455C475 445 490 447.5 500 457.5C510 470 510 485 497.5 495Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+// </iconoma-icon>
+
+// <iconoma-icon key="aaaa" name="Aaaa">
+export const Aaaa = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 700 700"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    {...props}
+  >
+    <path
+      d="M150 250H155H350H550H685C642.5 105 507.5 0 350 0C192.5 0 57.5 105 15 250H150Z"
+      fill="currentColor"
+    />
+    <path
+      d="M575 300V350C575 392.5 542.5 425 500 425H435C402.5 425 375 405 365 372.5L350 340L335 375C325 405 297.5 425 265 425H200C157.5 425 125 392.5 125 350V300H5C2.5 317.5 0 332.5 0 350C0 542.5 157.5 700 350 700C542.5 700 700 542.5 700 350C700 332.5 697.5 317.5 695 300H575ZM497.5 495C457.5 530 405 550 350 550C335 550 325 540 325 525C325 510 335 500 350 500C392.5 500 432.5 485 465 455C475 445 490 447.5 500 457.5C510 470 510 485 497.5 495Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+// </iconoma-icon>
+
+// <iconoma-icon key="kkkxx" name="Kkkxx">
+export const Kkkxx = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 700 700"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    {...props}
+  >
+    <path
+      d="M150 250H155H350H550H685C642.5 105 507.5 0 350 0C192.5 0 57.5 105 15 250H150Z"
+      fill="currentColor"
+    />
+    <path
+      d="M575 300V350C575 392.5 542.5 425 500 425H435C402.5 425 375 405 365 372.5L350 340L335 375C325 405 297.5 425 265 425H200C157.5 425 125 392.5 125 350V300H5C2.5 317.5 0 332.5 0 350C0 542.5 157.5 700 350 700C542.5 700 700 542.5 700 350C700 332.5 697.5 317.5 695 300H575ZM497.5 495C457.5 530 405 550 350 550C335 550 325 540 325 525C325 510 335 500 350 500C392.5 500 432.5 485 465 455C475 445 490 447.5 500 457.5C510 470 510 485 497.5 495Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+// </iconoma-icon>
+
+// <iconoma-icon key="iikooko" name="Iikooko">
+export const Iikooko = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 700 700"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    {...props}
+  >
+    <path
+      d="M150 250H155H350H550H685C642.5 105 507.5 0 350 0C192.5 0 57.5 105 15 250H150Z"
+      fill="currentColor"
+    />
+    <path
+      d="M575 300V350C575 392.5 542.5 425 500 425H435C402.5 425 375 405 365 372.5L350 340L335 375C325 405 297.5 425 265 425H200C157.5 425 125 392.5 125 350V300H5C2.5 317.5 0 332.5 0 350C0 542.5 157.5 700 350 700C542.5 700 700 542.5 700 350C700 332.5 697.5 317.5 695 300H575ZM497.5 495C457.5 530 405 550 350 550C335 550 325 540 325 525C325 510 335 500 350 500C392.5 500 432.5 485 465 455C475 445 490 447.5 500 457.5C510 470 510 485 497.5 495Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+// </iconoma-icon>
+
+// <iconoma-icon key="uii" name="Uii">
+export const Uii = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 700 700"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    {...props}
+  >
+    <path
+      d="M150 250H155H350H550H685C642.5 105 507.5 0 350 0C192.5 0 57.5 105 15 250H150Z"
+      fill="currentColor"
+    />
+    <path
+      d="M575 300V350C575 392.5 542.5 425 500 425H435C402.5 425 375 405 365 372.5L350 340L335 375C325 405 297.5 425 265 425H200C157.5 425 125 392.5 125 350V300H5C2.5 317.5 0 332.5 0 350C0 542.5 157.5 700 350 700C542.5 700 700 542.5 700 350C700 332.5 697.5 317.5 695 300H575ZM497.5 495C457.5 530 405 550 350 550C335 550 325 540 325 525C325 510 335 500 350 500C392.5 500 432.5 485 465 455C475 445 490 447.5 500 457.5C510 470 510 485 497.5 495Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+// </iconoma-icon>

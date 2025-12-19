@@ -23,7 +23,7 @@ type ActionWithId = ActionModel & { id: number };
 function getActionMessage(action: ActionWithId): string {
   switch (action.type) {
     case "MIGRATE_SVG_TO_LOCK":
-      return `Migrate SVG to lock for ${action.metadata?.iconKey || "icon"}`;
+      return `Migrate SVG to lock for ${action.metadata && "iconKey" in action.metadata ? (action.metadata as { iconKey: string }).iconKey : "icon"}`;
     case "MIGRATE_SVG_TO_FILE":
       return `Create SVG file for ${action.iconKey || "icon"}`;
     case "ADD_EXTRA_TARGET":

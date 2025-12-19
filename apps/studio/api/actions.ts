@@ -1,9 +1,18 @@
 import { Table } from "./db";
 import { ActionModel } from "./types";
-import { getIconContent, getLockFile, getPwd, setLockFile } from "./utils";
+import {
+  getIconContent,
+  getLockFile,
+  getPwd,
+  setLockFile,
+  getConfig,
+  createAction,
+  setContent,
+} from "./utils";
 import path from "node:path";
 import fs from "node:fs/promises";
 import crypto from "node:crypto";
+import { optimize } from "svgo";
 import { TargetClient } from "./target-clients/interface";
 import { ReactTargetClient } from "./target-clients/react";
 import { ReactNativeTargetClient } from "./target-clients/react-native";
@@ -20,18 +29,28 @@ export async function actionsWorker({
   if (!action) return;
 
   try {
+    let output = null;
+
     switch (action.type) {
       case "MIGRATE_SVG_TO_LOCK":
-        await migrateSvgToLock(action.filePath, action.metadata);
+        output = await migrateSvgToLock(
+          action.filePath,
+          action.metadata && "iconKey" in action.metadata
+            ? (action.metadata as { iconKey: string })
+            : undefined
+        );
         break;
       case "MIGRATE_SVG_TO_FILE":
-        await migrateSvgToFile(action.filePath!, action.iconKey!);
+        output = await migrateSvgToFile(action.filePath!, action.iconKey!);
         break;
       case "ADD_EXTRA_TARGET":
-        await addExtraTarget(action);
+        output = await addExtraTarget(action);
         break;
       case "REMOVE_EXTRA_TARGET":
-        await removeExtraTarget(action);
+        output = await removeExtraTarget(action);
+        break;
+      case "CREATE_ICON":
+        output = await createIcon(action);
         break;
     }
 
@@ -40,6 +59,8 @@ export async function actionsWorker({
       status: "completed",
       percentage: 100,
     });
+
+    return output;
   } catch (error) {
     console.error(error);
     table.update(actionId, {
@@ -193,4 +214,73 @@ async function migrateSvgToFile(filePath: string, iconKey: string) {
   await setLockFile(lockFile);
 
   console.log(`Migrated SVG to file for ${iconKey}`);
+}
+
+async function createIcon(action: ActionModel) {
+  if (
+    !action.metadata ||
+    !("name" in action.metadata) ||
+    !("tags" in action.metadata) ||
+    !("content" in action.metadata)
+  ) {
+    throw new Error(
+      "CREATE_ICON action requires metadata with name, tags, and content"
+    );
+  }
+
+  const { name, tags, content } = action.metadata;
+  const iconKey = String(name);
+
+  const config = await getConfig();
+  if (!config) throw new Error("Config not found");
+
+  const optimizedResult = optimize(content, config.svgo);
+  const optimizedContent = optimizedResult.data;
+
+  const { content: svgContent, hash: svgHash } = await setContent(
+    config,
+    iconKey,
+    optimizedContent
+  );
+
+  const lockFile = await getLockFile();
+  if (!lockFile) throw new Error("Lock file not found");
+
+  let icon = lockFile.icons[iconKey];
+
+  if (icon) {
+    icon.name = name;
+    icon.tags = tags;
+    icon.svg.content = svgContent;
+    icon.svg.hash = svgHash;
+    icon.targets = {};
+  } else {
+    icon = {
+      name,
+      tags,
+      svg: {
+        content: svgContent,
+        hash: svgHash,
+      },
+      targets: {},
+    };
+  }
+
+  lockFile.icons[iconKey] = icon;
+  await setLockFile(lockFile);
+
+  for (const target of config.extraTargets) {
+    const filePath = target.outputPath.replace("{name}", iconKey);
+
+    createAction({
+      type: "ADD_EXTRA_TARGET",
+      targetId: target.targetId,
+      filePath,
+      iconKey,
+    });
+  }
+
+  console.log(`Created/updated icon ${iconKey}`);
+
+  return icon;
 }

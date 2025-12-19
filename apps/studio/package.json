@@ -25,6 +25,7 @@
     "@tanstack/react-query": "^5.90.12",
     "@vitejs/plugin-react": "^5.1.2",
     "axios": "^1.13.2",
+    "canvas-confetti": "^1.9.4",
     "compression": "^1.8.1",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
@@ -36,11 +37,13 @@
     "react-hook-form": "^7.68.0",
     "react-router": "^7.11.0",
     "sirv": "^3.0.2",
+    "svgo": "^4.0.0",
     "zod": "^3.25.76"
   },
   "devDependencies": {
     "@iconoma/eslint-config": "workspace:^",
     "@iconoma/typescript-config": "workspace:*",
+    "@types/canvas-confetti": "^1.9.0",
     "@types/compression": "^1.8.1",
     "@types/express": "^5.0.6",
     "@types/react": "^19.2.5",

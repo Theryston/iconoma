@@ -60,16 +60,17 @@ export function ConfigModal({
       svgo: JSON.stringify(
         {
           plugins: [
-            "removeDimensions",
-            "removeHiddenElems",
             {
               name: "preset-default",
               params: {
                 overrides: {
-                  removeTitle: false,
+                  removeViewBox: false,
                 },
               },
             },
+            "removeDimensions",
+            "removeHiddenElems",
+            "removeTitle",
             {
               name: "convertColors",
               params: {

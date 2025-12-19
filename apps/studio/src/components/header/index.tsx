@@ -5,6 +5,7 @@ import { PlusIcon } from "lucide-react";
 import { ConfigButton } from "./config-button";
 import { Link } from "react-router";
 import { SearchInput } from "./search-input";
+import { ColorPicker } from "./color-picker";
 
 export function Header() {
   return (
@@ -30,6 +31,7 @@ export function Header() {
         </div>
 
         <div className="flex items-center gap-2">
+          <ColorPicker />
           <ConfigButton />
           <Button size="icon" asChild>
             <Link to="/icons/create">

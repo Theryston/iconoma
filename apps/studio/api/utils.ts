@@ -1,7 +1,9 @@
 import path from "node:path";
 import fs from "node:fs/promises";
-import { Config, LockFile, LockFileIcon } from "./types";
+import { ActionModel, Change, Config, LockFile, LockFileIcon } from "./types";
 import crypto from "node:crypto";
+import { table } from "./db";
+import { actionsQueue } from "./queue";
 
 export async function getPwd() {
   return process.env.ICONOMA_PWD || process.cwd();
@@ -109,4 +111,52 @@ export function toPascalFromSeparated(input: string): string {
     .filter(Boolean)
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join("");
+}
+
+export async function setContent(
+  config: Config,
+  iconKey: string,
+  content: string
+): Promise<{ content: string; hash: string }> {
+  const hash = crypto.createHash("sha256").update(content).digest("hex");
+
+  if (config.svg.inLock) {
+    return {
+      content,
+      hash,
+    };
+  } else {
+    if (!config.svg.folder) {
+      throw new Error("SVG folder must be provided when inLock is false");
+    }
+
+    const pwd = await getPwd();
+    const filePath = path.join(config.svg.folder, `${iconKey}.svg`);
+    const fullPath = path.join(pwd, filePath);
+
+    const folder = path.dirname(fullPath);
+    await fs.mkdir(folder, { recursive: true });
+
+    await fs.writeFile(fullPath, content, "utf-8");
+
+    return {
+      content: `file://${filePath}`,
+      hash,
+    };
+  }
+}
+
+export const actionsTable = table<ActionModel>("actions");
+
+export async function createAction(action: Change) {
+  const createdActionId: number = actionsTable.create({
+    ...action,
+    status: "pending",
+    percentage: 0,
+  });
+
+  return await actionsQueue.push({
+    actionId: createdActionId,
+    table: actionsTable,
+  });
 }

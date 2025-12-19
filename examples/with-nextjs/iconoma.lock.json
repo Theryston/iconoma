@@ -1,19 +1,174 @@
 {
-  "configHash": "fcc5c872b50b68ce284546e5f04dc390789ef4d10e5092d68aadf815979f74de",
+  "configHash": "0bdf9c9fbacdb26324a4ed19fce08467994b32fb92b6e8722fe094b4f161b27c",
   "icons": {
-    "home": {
-      "name": "home",
-      "tags": ["navigation", "ui", "house"],
+    "iconoma": {
+      "name": "iconoma",
+      "tags": [
+        "iconoma",
+        "happy"
+      ],
       "svg": {
-        "content": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 10.5 12 3l9 7.5\"/><path d=\"M5 9.5V21h14V9.5\"/><path d=\"M9 21v-7h6v7\"/></svg>",
-        "hash": "61f715d79cccc4faa831a1a42179102e6dd11c28a5dbb8c491686809a452ce4a"
+        "content": "file://icons\\iconoma.svg",
+        "hash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a"
       },
       "targets": {
         "react": {
           "path": "./components/icons.tsx",
           "builtFrom": {
-            "svgHash": "61f715d79cccc4faa831a1a42179102e6dd11c28a5dbb8c491686809a452ce4a",
-            "configHash": "fcc5c872b50b68ce284546e5f04dc390789ef4d10e5092d68aadf815979f74de"
+            "svgHash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a",
+            "configHash": "7d93f0086925a4a10cb073bcce776684e2102d7e9bb05f3b40b6aa053678966b"
+          }
+        }
+      }
+    },
+    "xxx": {
+      "name": "xxx",
+      "tags": [
+        "xx"
+      ],
+      "svg": {
+        "content": "file://icons\\xxx.svg",
+        "hash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a",
+            "configHash": "0bdf9c9fbacdb26324a4ed19fce08467994b32fb92b6e8722fe094b4f161b27c"
+          }
+        }
+      }
+    },
+    "aaa": {
+      "name": "aaa",
+      "tags": [
+        "aaa"
+      ],
+      "svg": {
+        "content": "file://icons\\aaa.svg",
+        "hash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a",
+            "configHash": "0bdf9c9fbacdb26324a4ed19fce08467994b32fb92b6e8722fe094b4f161b27c"
+          }
+        }
+      }
+    },
+    "mama": {
+      "name": "mama",
+      "tags": [
+        "mama"
+      ],
+      "svg": {
+        "content": "file://icons\\mama.svg",
+        "hash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a",
+            "configHash": "0bdf9c9fbacdb26324a4ed19fce08467994b32fb92b6e8722fe094b4f161b27c"
+          }
+        }
+      }
+    },
+    "que": {
+      "name": "que",
+      "tags": [
+        "que"
+      ],
+      "svg": {
+        "content": "file://icons\\que.svg",
+        "hash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a",
+            "configHash": "0bdf9c9fbacdb26324a4ed19fce08467994b32fb92b6e8722fe094b4f161b27c"
+          }
+        }
+      }
+    },
+    "aaaa": {
+      "name": "aaaa",
+      "tags": [
+        "aaaa"
+      ],
+      "svg": {
+        "content": "file://icons\\aaaa.svg",
+        "hash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a",
+            "configHash": "0bdf9c9fbacdb26324a4ed19fce08467994b32fb92b6e8722fe094b4f161b27c"
+          }
+        }
+      }
+    },
+    "kkkxx": {
+      "name": "kkkxx",
+      "tags": [
+        "kkkkk"
+      ],
+      "svg": {
+        "content": "file://icons\\kkkxx.svg",
+        "hash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a",
+            "configHash": "0bdf9c9fbacdb26324a4ed19fce08467994b32fb92b6e8722fe094b4f161b27c"
+          }
+        }
+      }
+    },
+    "iikooko": {
+      "name": "iikooko",
+      "tags": [
+        "okoko"
+      ],
+      "svg": {
+        "content": "file://icons\\iikooko.svg",
+        "hash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a",
+            "configHash": "0bdf9c9fbacdb26324a4ed19fce08467994b32fb92b6e8722fe094b4f161b27c"
+          }
+        }
+      }
+    },
+    "uii": {
+      "name": "uii",
+      "tags": [
+        "uii"
+      ],
+      "svg": {
+        "content": "file://icons\\uii.svg",
+        "hash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a",
+            "configHash": "0bdf9c9fbacdb26324a4ed19fce08467994b32fb92b6e8722fe094b4f161b27c"
           }
         }
       }

@@ -1,29 +1,19 @@
 import { Router, json } from "express";
-import { getConfig, getLockFile, getPwd, setConfig } from "./utils";
+import {
+  actionsTable,
+  createAction,
+  getConfig,
+  getLockFile,
+  getPwd,
+  setConfig,
+  toPascalFromSeparated,
+  getIconContent,
+} from "./utils";
 import path from "node:path";
-import { Change, ActionModel, Config } from "./types";
-import { promise as fastq } from "fastq";
-import { table } from "./db";
-import { actionsWorker } from "./actions";
-
-const actionsTable = table<ActionModel>("actions");
-
-const actionsQueue = fastq(actionsWorker, 1);
+import fs from "node:fs/promises";
+import { Change, Config } from "./types";
 
 const apiRoutes: Router = Router();
-
-async function createAction(action: Change) {
-  const createdActionId: number = actionsTable.create({
-    ...action,
-    status: "pending",
-    percentage: 0,
-  });
-
-  return await actionsQueue.push({
-    actionId: createdActionId,
-    table: actionsTable,
-  });
-}
 
 apiRoutes.use(json());
 
@@ -181,6 +171,64 @@ apiRoutes.get("/actions", async (req, res) => {
 
 apiRoutes.get("/commit/changes", async (req, res) => {
   res.json({ changes: [] });
+});
+
+apiRoutes.post("/icons/create", async (req, res) => {
+  const body = req.body as { name: string; tags: string[]; content: string };
+
+  await createAction({
+    type: "CREATE_ICON",
+    metadata: {
+      name: body.name,
+      tags: body.tags,
+      content: body.content,
+    },
+  });
+
+  const lockFile = await getLockFile();
+  if (!lockFile) {
+    return res.status(500).json({ error: "Lock file not found" });
+  }
+
+  const iconKey = String(body.name);
+  let icon = lockFile.icons[iconKey];
+
+  let attempts = 0;
+  while (!icon && attempts < 20) {
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    const updatedLockFile = await getLockFile();
+
+    if (updatedLockFile) {
+      icon = updatedLockFile.icons[iconKey];
+    }
+
+    attempts++;
+  }
+
+  if (!icon) {
+    return res.status(500).json({ error: "Icon not found after creation" });
+  }
+
+  res.json({ icon, pascalName: toPascalFromSeparated(body.name) });
+});
+
+apiRoutes.get("/icons/content", async (req, res) => {
+  const filePath = req.query.path as string;
+
+  if (!filePath) {
+    return res.status(400).json({ error: "Path is required" });
+  }
+
+  const pwd = await getPwd();
+  const fullPath = path.join(pwd, filePath);
+
+  try {
+    const content = await fs.readFile(fullPath, "utf-8");
+    res.setHeader("Content-Type", "image/svg+xml");
+    res.send(content);
+  } catch (error) {
+    res.status(404).json({ error: "File not found" });
+  }
 });
 
 export default apiRoutes;

@@ -7,6 +7,7 @@ import Layout from "./pages/layout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@iconoma/ui/components/sonner";
 import { ActionsButton } from "./components/actions-button";
+import { StudioProvider } from "./context";
 
 type AppProps = {
   url?: string;
@@ -18,17 +19,19 @@ export function App({ url }: AppProps = {}) {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="iconoma-studio-theme">
       <QueryClientProvider client={queryClient}>
-        <Router url={url}>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/icons/create" element={<CreateIcon />} />
-            </Route>
-          </Routes>
-        </Router>
+        <StudioProvider>
+          <Router url={url}>
+            <Routes>
+              <Route element={<Layout />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/icons/create" element={<CreateIcon />} />
+              </Route>
+            </Routes>
+          </Router>
 
-        <ActionsButton />
-        <Toaster />
+          <ActionsButton />
+          {typeof window !== "undefined" && <Toaster />}
+        </StudioProvider>
       </QueryClientProvider>
     </ThemeProvider>
   );

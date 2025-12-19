@@ -1,20 +1,13 @@
 {
   "svg": {
-    "folder": null,
-    "inLock": true
+    "folder": "./icons",
+    "inLock": false
   },
   "svgo": {
     "plugins": [
       "removeDimensions",
       "removeHiddenElems",
-      {
-        "name": "preset-default",
-        "params": {
-          "overrides": {
-            "removeTitle": false
-          }
-        }
-      },
+      "removeTitle",
       {
         "name": "convertColors",
         "params": {

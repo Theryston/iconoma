@@ -47,10 +47,13 @@ export type Change = {
     | "MIGRATE_SVG_TO_FILE"
     | "ADD_EXTRA_TARGET"
     | "REMOVE_EXTRA_TARGET"
+    | "CREATE_ICON"
     | "REGENERATE_ALL";
   filePath?: string;
   iconKey?: string;
-  metadata?: { iconKey: string };
+  metadata?:
+    | { iconKey: string }
+    | { name: string; tags: string[]; content: string };
   targetId?: string;
 };
 
