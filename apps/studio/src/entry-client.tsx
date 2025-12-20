@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { hydrateRoot } from "react-dom/client";
-import { App } from "./app.tsx";
+import { App } from "./App.tsx";
 
 hydrateRoot(
   document.getElementById("root")!,
