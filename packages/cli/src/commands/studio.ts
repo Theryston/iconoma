@@ -1,5 +1,5 @@
 import { Command, Flags } from "@oclif/core";
-import { getStudio } from "../get-studio.js";
+import { createServer } from "@iconoma/studio";
 import figlet from "figlet";
 import gradient from "gradient-string";
 import { createSpinner } from "nanospinner";
@@ -31,8 +31,6 @@ export default class Studio extends Command {
     const spinner = createSpinner("Starting Studio...").start();
 
     try {
-      const { createServer } = await getStudio();
-
       const { url } = await createServer({ port });
 
       await open(url, { wait: true });

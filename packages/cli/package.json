@@ -22,6 +22,7 @@
   "devDependencies": {
     "@iconoma/eslint-config": "workspace:*",
     "@iconoma/typescript-config": "workspace:*",
+    "@iconoma/studio": "workspace:*",
     "@types/chai": "^4",
     "@types/mocha": "^10",
     "@types/node": "^18",
@@ -43,7 +44,22 @@
   ],
   "homepage": "https://github.com/theryston/iconoma",
   "keywords": [
-    "oclif"
+    "oclif",
+    "iconoma",
+    "icon management",
+    "icons",
+    "studio",
+    "CLI",
+    "SVG",
+    "react",
+    "icon pipeline",
+    "icon optimizer",
+    "icon library",
+    "SVGO",
+    "design system",
+    "icon build",
+    "icon generator",
+    "react icons"
   ],
   "license": "MIT",
   "main": "dist/index.js",
@@ -67,7 +83,6 @@
     "url": "git+https://github.com/theryston/iconoma.git"
   },
   "scripts": {
-    "postbuild": "node scripts/bundle-studio.js",
     "build": "shx rm -rf dist && tsc -b",
     "lint": "eslint",
     "postpack": "shx rm -f oclif.manifest.json",

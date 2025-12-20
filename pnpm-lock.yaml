@@ -123,9 +123,6 @@ importers:
       '@types/react-dom':
         specifier: ^19.2.3
         version: 19.2.3(@types/react@19.2.7)
-      '@vercel/ncc':
-        specifier: ^0.38.4
-        version: 0.38.4
       nodemon:
         specifier: ^3.1.11
         version: 3.1.11
@@ -249,6 +246,9 @@ importers:
       '@iconoma/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
+      '@iconoma/studio':
+        specifier: workspace:*
+        version: link:../../apps/studio
       '@iconoma/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
@@ -2908,10 +2908,6 @@ packages:
   '@typescript-eslint/visitor-keys@8.39.0':
     resolution: {integrity: sha512-ldgiJ+VAhQCfIjeOgu8Kj5nSxds0ktPOSO9p4+0VDH2R2pLvQraaM5Oen2d7NxzMCm+Sn/vJT+mv2H5u6b/3fA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@vercel/ncc@0.38.4':
-    resolution: {integrity: sha512-8LwjnlP39s08C08J5NstzriPvW1SP8Zfpp1BvC2sI35kPeZnHfxVkCwu4/+Wodgnd60UtT1n8K8zw+Mp7J9JmQ==}
-    hasBin: true
 
   '@vitejs/plugin-react@5.1.2':
     resolution: {integrity: sha512-EcA07pHJouywpzsoTUqNh5NwGayl2PPVEJKUSinGGSxFGYn+shYbqMGBg6FXDqgXum9Ou/ecb+411ssw8HImJQ==}
@@ -8936,8 +8932,6 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.39.0
       eslint-visitor-keys: 4.2.1
-
-  '@vercel/ncc@0.38.4': {}
 
   '@vitejs/plugin-react@5.1.2(rolldown-vite@7.2.5(@types/node@24.10.4)(jiti@2.6.1)(tsx@4.21.0))':
     dependencies:
