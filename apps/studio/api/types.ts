@@ -20,6 +20,7 @@ export type LockFileIcon = {
   tags: string[];
   svg: LockFileIconSvg;
   targets: Record<string, LockFileIconTarget>;
+  colorVariableKeys: string[];
 };
 
 export type LockFileIconSvg = {

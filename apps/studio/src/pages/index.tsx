@@ -282,6 +282,7 @@ export default function Home() {
                 iconKey={selectedIcon.iconKey}
                 pascalName={selectedIcon.pascalName}
                 svgContent={selectedIcon.svgContent}
+                colorVariableKeys={selectedIcon.icon.colorVariableKeys}
               />
             </div>
 

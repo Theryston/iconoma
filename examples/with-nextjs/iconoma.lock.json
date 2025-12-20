@@ -1,15 +1,11 @@
 {
-  "configHash": "b8b20bb960ca1bdf67ff0f2bd89369edbbd682efa8df020a8383cd0fb9e602d0",
+  "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a",
   "icons": {
     "iconoma": {
       "name": "iconoma",
-      "tags": [
-        "iconoma",
-        "studio",
-        "cli"
-      ],
+      "tags": [],
       "svg": {
-        "content": "<svg viewBox=\"0 0 700 700\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M150 250H155H350H550H685C642.5 105 507.5 0 350 0C192.5 0 57.5 105 15 250H150Z\" fill=\"currentColor\"/><path d=\"M575 300V350C575 392.5 542.5 425 500 425H435C402.5 425 375 405 365 372.5L350 340L335 375C325 405 297.5 425 265 425H200C157.5 425 125 392.5 125 350V300H5C2.5 317.5 0 332.5 0 350C0 542.5 157.5 700 350 700C542.5 700 700 542.5 700 350C700 332.5 697.5 317.5 695 300H575ZM497.5 495C457.5 530 405 550 350 550C335 550 325 540 325 525C325 510 335 500 350 500C392.5 500 432.5 485 465 455C475 445 490 447.5 500 457.5C510 470 510 485 497.5 495Z\" fill=\"var(--icons-secondary)\"/></svg>",
+        "content": "file://icons\\iconoma.svg",
         "hash": "166ab79702894031cf7ee190d29276d5282e50bdebd4f486c9762d8bf4eeccfc"
       },
       "targets": {
@@ -19,8 +15,46 @@
             "svgHash": "166ab79702894031cf7ee190d29276d5282e50bdebd4f486c9762d8bf4eeccfc",
             "configHash": "b8b20bb960ca1bdf67ff0f2bd89369edbbd682efa8df020a8383cd0fb9e602d0"
           }
+        },
+        "react-native": {
+          "path": "./react-native/icons/iconoma.tsx",
+          "builtFrom": {
+            "svgHash": "166ab79702894031cf7ee190d29276d5282e50bdebd4f486c9762d8bf4eeccfc",
+            "configHash": "d3b5574d0d1abce090f8a9b91b1d90216a50e1ec804d7751c6f44844bb68f799"
+          }
         }
-      }
+      },
+      "colorVariableKeys": [
+        "currentColor",
+        "var(--icons-secondary)"
+      ]
+    },
+    "clock": {
+      "name": "clock",
+      "tags": [
+        "time"
+      ],
+      "svg": {
+        "content": "file://icons\\clock.svg",
+        "hash": "b26620d8a22f2acc0ace78a9d712f7a67f0b810fc87649f5f9663b847e266fd6"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "b26620d8a22f2acc0ace78a9d712f7a67f0b810fc87649f5f9663b847e266fd6",
+            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
+          }
+        },
+        "react-native": {
+          "path": "./react-native/icons/clock.tsx",
+          "builtFrom": {
+            "svgHash": "b26620d8a22f2acc0ace78a9d712f7a67f0b810fc87649f5f9663b847e266fd6",
+            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
+          }
+        }
+      },
+      "colorVariableKeys": []
     }
   }
 }

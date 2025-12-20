@@ -21,7 +21,7 @@ export function SvgPreview({
     };
 
     colorVariables.forEach((variable: string) => {
-      const colorValue = colorVariableValues[variable] || "#000000";
+      const colorValue = colorVariableValues[variable] || "#ffffff";
       cssVars[variable] = colorValue;
     });
 

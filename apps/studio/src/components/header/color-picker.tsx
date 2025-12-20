@@ -23,7 +23,7 @@ export function ColorPicker() {
   const colorVariables = config?.colorVariables || [];
 
   const getColorForVariable = (variable: string): string => {
-    return colorVariableValues[variable] || "#000000";
+    return colorVariableValues[variable] || "#ffffff";
   };
 
   return (

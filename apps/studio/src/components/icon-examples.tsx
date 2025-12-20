@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { useConfig } from "../hooks/config";
+import { useStudio } from "../context";
 import { Button } from "@iconoma/ui/components/button";
 import { toast } from "@iconoma/ui/components/sonner";
 import { Copy, Check } from "lucide-react";
@@ -9,14 +10,17 @@ type IconExamplesProps = {
   iconKey: string;
   pascalName: string;
   svgContent: string;
+  colorVariableKeys?: string[];
 };
 
 export function IconExamples({
   iconKey,
   pascalName,
   svgContent,
+  colorVariableKeys = [],
 }: IconExamplesProps) {
   const { data: config } = useConfig();
+  const { previewColor, colorVariableValues } = useStudio();
   const [activeTab, setActiveTab] = useState<string>("");
   const [copiedTab, setCopiedTab] = useState<string | null>(null);
 
@@ -72,15 +76,77 @@ export function IconExamples({
     return rnTarget.outputPath.replace("{name}", iconKey);
   };
 
-  const svgExample = svgContent;
+  const cssVariables = colorVariableKeys.filter(
+    (key) => key.startsWith("var(") && key.endsWith(")")
+  );
 
-  const reactExample = `import { ${pascalName} } from "${getReactPath()}";
+  const cssVarNames = cssVariables
+    .map((varStr) => {
+      const match = varStr.match(/var\((--[^)]+)\)/);
+      return match ? match[1] : null;
+    })
+    .filter(Boolean) as string[];
 
-<${pascalName} className="text-blue-500 text-2xl" />`;
+  const generateReactExample = () => {
+    const importLine = `import { ${pascalName} } from "${getReactPath()}";`;
+    const styleEntries: string[] = [];
 
-  const reactNativeExample = `import { ${pascalName} } from "${getReactNativePath()}";
+    styleEntries.push(`color: "${previewColor}"`);
 
-<${pascalName} color="#3B82F6" size={24} />`;
+    cssVarNames.forEach((varName) => {
+      const colorValue = colorVariableValues[varName] || "#6B7280";
+      styleEntries.push(`"${varName}": "${colorValue}"`);
+    });
+
+    if (styleEntries.length === 0) {
+      return `${importLine}
+
+<div className="text-2xl">
+  <${pascalName} />
+</div>`;
+    }
+
+    const styleObject = `{ ${styleEntries.join(", ")} }`;
+    return `${importLine}
+
+<div style={${styleObject}} className="text-2xl">
+  <${pascalName} />
+</div>`;
+  };
+
+  const generateSvgExample = () => {
+    const styleProps: string[] = [];
+
+    styleProps.push(`color: "${previewColor}"`);
+
+    cssVarNames.forEach((varName) => {
+      const colorValue = colorVariableValues[varName] || "#6B7280";
+      styleProps.push(`${varName}: "${colorValue}"`);
+    });
+
+    return `<div style="${styleProps.join("; ")}">
+${svgContent}
+</div>`;
+  };
+
+  const generateReactNativeExample = () => {
+    const importLine = `import { ${pascalName} } from "${getReactNativePath()}";`;
+    const props: string[] = [];
+
+    props.push(`color="${previewColor}"`);
+
+    props.push(`size={24}`);
+
+    let example = `${importLine}
+
+<${pascalName} ${props.join(" ")} />`;
+
+    return example;
+  };
+
+  const svgExample = generateSvgExample();
+  const reactExample = generateReactExample();
+  const reactNativeExample = generateReactNativeExample();
 
   const handleCopy = async (code: string, tab: string) => {
     try {
@@ -125,7 +191,7 @@ export function IconExamples({
               <code className="text-foreground">{svgExample}</code>
             </pre>
             <Button
-              variant="default"
+              variant="ghost"
               size="sm"
               className="absolute top-2 right-2 h-8 w-8 p-0"
               onClick={() => handleCopy(svgExample, "svg")}

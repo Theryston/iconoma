@@ -396,12 +396,17 @@ async function createIcon(action: ActionModel) {
 
   let icon = lockFile.icons[iconKey];
 
+  const colorVariableKeys = Object.values(colorMap || {}).map(
+    (variable) => variable
+  );
+
   if (icon) {
     icon.name = iconKey;
     icon.tags = tags;
     icon.svg.content = svgContent;
     icon.svg.hash = svgHash;
     icon.targets = {};
+    icon.colorVariableKeys = colorVariableKeys;
   } else {
     icon = {
       name: iconKey,
@@ -411,6 +416,7 @@ async function createIcon(action: ActionModel) {
         hash: svgHash,
       },
       targets: {},
+      colorVariableKeys,
     };
   }
 

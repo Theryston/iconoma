@@ -25,3 +25,27 @@ export const Iconoma = (props: SVGProps<SVGSVGElement>) => (
 );
 // </iconoma-icon>
 
+// <iconoma-icon key="clock" name="Clock">
+export const Clock = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="lucide lucide-alarm-clock-icon lucide-alarm-clock"
+    width="1em"
+    height="1em"
+    {...props}
+  >
+    <circle cx={12} cy={13} r={8} />
+    <path d="M12 9v4l2 2" />
+    <path d="M5 3 2 6" />
+    <path d="m22 6-3-3" />
+    <path d="M6.38 18.7 4 21" />
+    <path d="M17.64 18.67 20 21" />
+  </svg>
+);
+// </iconoma-icon>

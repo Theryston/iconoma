@@ -318,6 +318,13 @@ export class ReactTargetClient implements TargetClient {
   }
 
   async deleteFile(fullPath: string): Promise<void> {
+    const exists = await fs
+      .access(fullPath)
+      .then(() => true)
+      .catch(() => false);
+
+    if (!exists) return;
+
     await fs.unlink(fullPath);
     const folder = path.dirname(fullPath);
     const files = await fs.readdir(folder);
