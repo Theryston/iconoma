@@ -1,11 +1,13 @@
 {
   "svg": {
-    "folder": "./icons",
-    "inLock": false
+    "folder": null,
+    "inLock": true
   },
   "svgo": {
     "plugins": [
       "removeDimensions",
+      "removeHiddenElems",
+      "removeTitle",
       {
         "name": "convertColors",
         "params": {
@@ -19,13 +21,9 @@
     {
       "targetId": "react",
       "outputPath": "./components/icons.tsx"
-    },
-    {
-      "targetId": "react-native",
-      "outputPath": "./components/native-icons.tsx"
     }
   ],
   "colorVariables": [
-    "--icon-secondary"
+    "--icons-secondary"
   ]
 }

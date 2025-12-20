@@ -14,7 +14,7 @@ const Page: FC = () => {
           <div
             key={key}
             className="text-blue-500 text-4xl"
-            style={{ "--icon-secondary": "#ff9900" } as React.CSSProperties}
+            style={{ "--icons-secondary": "#ff9900" } as React.CSSProperties}
           >
             <Icon />
           </div>
