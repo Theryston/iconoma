@@ -60,21 +60,14 @@ export function ConfigModal({
       svgo: JSON.stringify(
         {
           plugins: [
-            {
-              name: "preset-default",
-              params: {
-                overrides: {
-                  removeViewBox: false,
-                },
-              },
-            },
             "removeDimensions",
             "removeHiddenElems",
             "removeTitle",
             {
               name: "convertColors",
               params: {
-                currentColor: true,
+                currentColor: false,
+                names2hex: true,
               },
             },
           ],
@@ -83,6 +76,7 @@ export function ConfigModal({
         2
       ),
       extraTargets: [],
+      colorVariables: [],
     },
   });
 

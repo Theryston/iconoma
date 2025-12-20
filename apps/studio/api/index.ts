@@ -174,7 +174,12 @@ apiRoutes.get("/commit/changes", async (req, res) => {
 });
 
 apiRoutes.post("/icons/create", async (req, res) => {
-  const body = req.body as { name: string; tags: string[]; content: string };
+  const body = req.body as {
+    name: string;
+    tags: string[];
+    content: string;
+    colorMap?: Record<string, string>;
+  };
 
   const icon = await createAction({
     type: "CREATE_ICON",
@@ -182,6 +187,7 @@ apiRoutes.post("/icons/create", async (req, res) => {
       name: body.name,
       tags: body.tags,
       content: body.content,
+      colorMap: body.colorMap,
     },
   });
 

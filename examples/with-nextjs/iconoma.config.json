@@ -11,7 +11,8 @@
       {
         "name": "convertColors",
         "params": {
-          "currentColor": true
+          "currentColor": false,
+          "names2hex": true
         }
       }
     ]
@@ -21,5 +22,8 @@
       "targetId": "react",
       "outputPath": "./components/icons.tsx"
     }
+  ],
+  "colorVariables": [
+    "--icon-secondary"
   ]
 }

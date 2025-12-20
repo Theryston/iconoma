@@ -6,10 +6,19 @@ export function useCreateIcon() {
   return useMutation<
     { icon: LockFileIcon; pascalName: string },
     Error,
-    { name: string; tags: string[]; content: string }
+    {
+      name: string;
+      tags: string[];
+      content: string;
+      colorMap?: Record<string, string>;
+    }
   >({
-    mutationFn: (data: { name: string; tags: string[]; content: string }) =>
-      axios.post("/api/icons/create", data).then((res) => res.data),
+    mutationFn: (data: {
+      name: string;
+      tags: string[];
+      content: string;
+      colorMap?: Record<string, string>;
+    }) => axios.post("/api/icons/create", data).then((res) => res.data),
   });
 }
 

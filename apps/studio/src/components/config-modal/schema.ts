@@ -31,6 +31,7 @@ export const configFormSchema = z.object({
       })
     )
     .default([]),
+  colorVariables: z.array(z.string()).default([]),
 });
 
 export const configSchema = configFormSchema
@@ -84,7 +85,34 @@ export const configSchema = configFormSchema
           });
           return;
         }
+
+        if (Array.isArray(plugins)) {
+          const convertColorsPlugin = plugins.find(
+            (plugin: any) =>
+              typeof plugin === "object" &&
+              plugin !== null &&
+              plugin.name === "convertColors" &&
+              plugin.params &&
+              typeof plugin.params === "object"
+          );
+
+          if (
+            convertColorsPlugin &&
+            convertColorsPlugin.params.currentColor === true
+          ) {
+            ctx.addIssue({
+              code: z.ZodIssueCode.custom,
+              message:
+                "Please set convertColors.params.currentColor to false, as Iconoma will convert colors using the configured color variables.",
+              path: ctx.path,
+            });
+          }
+        }
       }),
+    colorVariables: z
+      .array(z.string())
+      .default([])
+      .transform((val) => val.filter((v) => v.trim().length > 0)),
   })
   .superRefine((data, ctx) => {
     if (data.svg.inLock && data.extraTargets.length === 0) {

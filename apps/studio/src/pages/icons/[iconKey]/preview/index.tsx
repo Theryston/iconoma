@@ -120,9 +120,9 @@ export default function IconPreview() {
     );
   }
 
-  const { icon, pascalName, svgContent } = iconData;
+  const { pascalName, svgContent } = iconData;
 
-  const svgExample = `<img src="${getSvgPath()}" alt="${icon.name}" />`;
+  const svgExample = svgContent;
 
   const reactExample = `import { ${pascalName} } from "${getReactPath()}";
 

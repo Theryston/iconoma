@@ -16,6 +16,7 @@ import { optimize } from "svgo";
 import { TargetClient } from "./target-clients/interface";
 import { ReactTargetClient } from "./target-clients/react";
 import { ReactNativeTargetClient } from "./target-clients/react-native";
+import { mapColors } from "./svgo-plugin-map-colors";
 
 export async function actionsWorker({
   actionId,
@@ -234,7 +235,19 @@ async function createIcon(action: ActionModel) {
   const config = await getConfig();
   if (!config) throw new Error("Config not found");
 
-  const optimizedResult = optimize(content, config.svgo);
+  const colorMap = (action.metadata as any).colorMap as
+    | Record<string, string>
+    | undefined;
+
+  const optimizedResult = optimize(content, {
+    ...config.svgo,
+    plugins: [
+      ...(config.svgo?.plugins ?? []),
+      "convertStyleToAttrs",
+      ...(colorMap ? [mapColors({ map: colorMap })] : []),
+    ],
+  });
+
   const optimizedContent = optimizedResult.data;
 
   const { content: svgContent, hash: svgHash } = await setContent(

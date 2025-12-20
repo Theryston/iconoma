@@ -19,7 +19,7 @@ import { cn } from "@iconoma/ui/lib/utils";
 import { Input } from "@iconoma/ui/components/input";
 import { Label } from "@iconoma/ui/components/label";
 import { Checkbox } from "@iconoma/ui/components/checkbox";
-import { Check } from "lucide-react";
+import { Check, Trash2, Plus } from "lucide-react";
 import { AVAILABLE_TARGETS } from "../../../constants";
 import {
   SandpackCodeEditor,
@@ -137,6 +137,7 @@ export function ConfigFormStep({
           />
 
           <ExtraTargetsSection form={form} />
+          <ColorVariablesSection form={form} />
           <Accordion
             type="multiple"
             value={accordionValue}
@@ -272,7 +273,7 @@ function ExtraTargetsSection({ form }: { form: UseFormReturn<ConfigInput> }) {
           ...(currentTargets ?? []),
           {
             targetId,
-            outputPath: `./components/${targetConfig.id}/icons/{name}${targetConfig.extension[0]}`,
+            outputPath: `./${targetConfig.id}/icons/{name}${targetConfig.extension[0]}`,
           },
         ];
         form.setValue("extraTargets", newTargets, { shouldValidate: true });
@@ -379,6 +380,95 @@ function ExtraTargetsSection({ form }: { form: UseFormReturn<ConfigInput> }) {
             })}
           </div>
         )}
+      </div>
+
+      {fieldState &&
+        typeof fieldState === "object" &&
+        "message" in fieldState &&
+        !Array.isArray(fieldState) && <FieldError errors={[fieldState]} />}
+    </Field>
+  );
+}
+
+function ColorVariablesSection({ form }: { form: UseFormReturn<ConfigInput> }) {
+  const colorVariables = form.watch("colorVariables");
+  const fieldState = form.formState.errors.colorVariables;
+
+  const addVariable = () => {
+    const currentVariables = form.getValues("colorVariables");
+    const newVariables = [...(currentVariables ?? []), ""];
+    form.setValue("colorVariables", newVariables, { shouldValidate: true });
+  };
+
+  const removeVariable = (index: number) => {
+    const currentVariables = form.getValues("colorVariables");
+    const newVariables = currentVariables?.filter((_, i) => i !== index) ?? [];
+    form.setValue("colorVariables", newVariables, { shouldValidate: true });
+  };
+
+  const updateVariable = (index: number, value: string) => {
+    const currentVariables = form.getValues("colorVariables");
+    const newVariables = [...(currentVariables ?? [])];
+    newVariables[index] = value;
+    form.setValue("colorVariables", newVariables, { shouldValidate: true });
+  };
+
+  const getVariableError = (index: number) => {
+    if (
+      fieldState &&
+      typeof fieldState === "object" &&
+      !("message" in fieldState) &&
+      Array.isArray(fieldState) &&
+      fieldState[index]
+    ) {
+      return fieldState[index];
+    }
+    return null;
+  };
+
+  return (
+    <Field>
+      <FieldLabel>Color Variables</FieldLabel>
+      <FieldDescription>
+        Define color variable names that can be used in your icons.
+      </FieldDescription>
+
+      <div className="flex flex-col gap-3 mt-3">
+        {(colorVariables ?? []).length > 0 && (
+          <div className="flex flex-col gap-2 rounded-lg border p-4 bg-muted/30">
+            {(colorVariables ?? []).map((variable, index) => {
+              const error = getVariableError(index);
+
+              return (
+                <div key={index} className="flex flex-col gap-1.5">
+                  <div className="flex items-center gap-2">
+                    <Input
+                      placeholder="e.g. --icons-secondary"
+                      value={variable}
+                      onChange={(e) => updateVariable(index, e.target.value)}
+                      className={cn(error && "border-destructive")}
+                    />
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="icon"
+                      onClick={() => removeVariable(index)}
+                      className="shrink-0"
+                    >
+                      <Trash2 className="size-4" />
+                    </Button>
+                  </div>
+                  {error && <FieldError errors={[error]} />}
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        <Button type="button" variant="outline" size="sm" onClick={addVariable}>
+          <Plus className="size-4 mr-2" />
+          Add Variable
+        </Button>
       </div>
 
       {fieldState &&

@@ -11,6 +11,7 @@ export type SvgConfig = {
 export type Config = {
   svg: SvgConfig;
   extraTargets: ExtraTarget[];
+  colorVariables: string[];
   svgo: any;
 };
 
@@ -53,7 +54,12 @@ export type Change = {
   iconKey?: string;
   metadata?:
     | { iconKey: string }
-    | { name: string; tags: string[]; content: string };
+    | {
+        name: string;
+        tags: string[];
+        content: string;
+        colorMap?: Record<string, string>;
+      };
   targetId?: string;
 };
 

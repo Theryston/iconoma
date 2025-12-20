@@ -5,6 +5,8 @@ type StudioContextValue = {
   setPreviewColor: (color: string) => void;
   colorPickerHint: string | null;
   setColorPickerHint: (hint: string | null) => void;
+  colorVariableValues: Record<string, string>;
+  setColorVariableValue: (variable: string, color: string) => void;
 };
 
 const StudioContext = createContext<StudioContextValue | undefined>(undefined);
@@ -19,6 +21,34 @@ export const StudioProvider = ({ children }: { children: React.ReactNode }) => {
   );
   const [colorPickerHint, setColorPickerHint] = useState<string | null>(null);
 
+  const loadColorVariableValues = (): Record<string, string> => {
+    if (typeof window === "undefined") return {};
+    try {
+      const saved = localStorage.getItem("iconoma-studio-color-variables");
+      if (saved) {
+        return JSON.parse(saved);
+      }
+    } catch {}
+    return {};
+  };
+
+  const [colorVariableValues, setColorVariableValuesState] = useState<
+    Record<string, string>
+  >(loadColorVariableValues);
+
+  const setColorVariableValue = (variable: string, color: string) => {
+    setColorVariableValuesState((prev) => {
+      const updated = { ...prev, [variable]: color };
+      if (typeof window !== "undefined") {
+        localStorage.setItem(
+          "iconoma-studio-color-variables",
+          JSON.stringify(updated)
+        );
+      }
+      return updated;
+    });
+  };
+
   useEffect(() => {
     localStorage.setItem("iconoma-studio-preview-color", previewColor);
   }, [previewColor]);
@@ -30,6 +60,8 @@ export const StudioProvider = ({ children }: { children: React.ReactNode }) => {
         setPreviewColor,
         colorPickerHint,
         setColorPickerHint,
+        colorVariableValues,
+        setColorVariableValue,
       }}
     >
       {children}
