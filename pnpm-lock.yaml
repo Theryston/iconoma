@@ -24,118 +24,6 @@ importers:
         specifier: 5.7.3
         version: 5.7.3
 
-  apps/studio:
-    dependencies:
-      '@hookform/resolvers':
-        specifier: ^5.2.2
-        version: 5.2.2(react-hook-form@7.68.0(react@19.2.1))
-      '@iconoma/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui
-      '@svgr/core':
-        specifier: ^8.1.0
-        version: 8.1.0(typescript@5.9.3)
-      '@svgr/plugin-jsx':
-        specifier: ^8.1.0
-        version: 8.1.0(@svgr/core@8.1.0(typescript@5.9.3))
-      '@svgr/plugin-prettier':
-        specifier: ^8.1.0
-        version: 8.1.0(@svgr/core@8.1.0(typescript@5.9.3))
-      '@svgr/plugin-svgo':
-        specifier: ^8.1.0
-        version: 8.1.0(@svgr/core@8.1.0(typescript@5.9.3))(typescript@5.9.3)
-      '@tailwindcss/vite':
-        specifier: ^4.1.18
-        version: 4.1.18(rolldown-vite@7.2.5(@types/node@24.10.4)(jiti@2.6.1)(tsx@4.21.0))
-      '@tanstack/react-query':
-        specifier: ^5.90.12
-        version: 5.90.12(react@19.2.1)
-      '@vitejs/plugin-react':
-        specifier: ^5.1.2
-        version: 5.1.2(rolldown-vite@7.2.5(@types/node@24.10.4)(jiti@2.6.1)(tsx@4.21.0))
-      axios:
-        specifier: ^1.13.2
-        version: 1.13.2
-      canvas-confetti:
-        specifier: ^1.9.4
-        version: 1.9.4
-      compression:
-        specifier: ^1.8.1
-        version: 1.8.1
-      dotenv:
-        specifier: ^17.2.3
-        version: 17.2.3
-      express:
-        specifier: ^5.2.1
-        version: 5.2.1
-      fastq:
-        specifier: ^1.19.1
-        version: 1.19.1
-      get-port:
-        specifier: ^7.1.0
-        version: 7.1.0
-      lucide-react:
-        specifier: ^0.475.0
-        version: 0.475.0(react@19.2.1)
-      react:
-        specifier: ^19.2.0
-        version: 19.2.1
-      react-dom:
-        specifier: ^19.2.0
-        version: 19.2.1(react@19.2.1)
-      react-dropzone:
-        specifier: ^14.3.8
-        version: 14.3.8(react@19.2.1)
-      react-hook-form:
-        specifier: ^7.68.0
-        version: 7.68.0(react@19.2.1)
-      react-router:
-        specifier: ^7.11.0
-        version: 7.11.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
-      sirv:
-        specifier: ^3.0.2
-        version: 3.0.2
-      svgo:
-        specifier: ^4.0.0
-        version: 4.0.0
-      zod:
-        specifier: ^3.25.76
-        version: 3.25.76
-    devDependencies:
-      '@iconoma/eslint-config':
-        specifier: workspace:^
-        version: link:../../packages/eslint-config
-      '@iconoma/typescript-config':
-        specifier: workspace:*
-        version: link:../../packages/typescript-config
-      '@types/canvas-confetti':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@types/compression':
-        specifier: ^1.8.1
-        version: 1.8.1
-      '@types/express':
-        specifier: ^5.0.6
-        version: 5.0.6
-      '@types/react':
-        specifier: ^19.2.5
-        version: 19.2.7
-      '@types/react-dom':
-        specifier: ^19.2.3
-        version: 19.2.3(@types/react@19.2.7)
-      nodemon:
-        specifier: ^3.1.11
-        version: 3.1.11
-      ts-add-js-extension:
-        specifier: ^1.6.6
-        version: 1.6.6
-      tsx:
-        specifier: ^4.21.0
-        version: 4.21.0
-      vite:
-        specifier: npm:rolldown-vite@7.2.5
-        version: rolldown-vite@7.2.5(@types/node@24.10.4)(jiti@2.6.1)(tsx@4.21.0)
-
   apps/web:
     dependencies:
       '@iconoma/ui':
@@ -248,7 +136,7 @@ importers:
         version: link:../eslint-config
       '@iconoma/studio':
         specifier: workspace:*
-        version: link:../../apps/studio
+        version: link:../studio
       '@iconoma/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
@@ -324,6 +212,118 @@ importers:
       typescript-eslint:
         specifier: ^8.39.0
         version: 8.39.0(eslint@9.32.0(jiti@2.6.1))(typescript@5.9.2)
+
+  packages/studio:
+    dependencies:
+      '@hookform/resolvers':
+        specifier: ^5.2.2
+        version: 5.2.2(react-hook-form@7.68.0(react@19.2.3))
+      '@iconoma/ui':
+        specifier: workspace:*
+        version: link:../ui
+      '@svgr/core':
+        specifier: ^8.1.0
+        version: 8.1.0(typescript@5.9.3)
+      '@svgr/plugin-jsx':
+        specifier: ^8.1.0
+        version: 8.1.0(@svgr/core@8.1.0(typescript@5.9.3))
+      '@svgr/plugin-prettier':
+        specifier: ^8.1.0
+        version: 8.1.0(@svgr/core@8.1.0(typescript@5.9.3))
+      '@svgr/plugin-svgo':
+        specifier: ^8.1.0
+        version: 8.1.0(@svgr/core@8.1.0(typescript@5.9.3))(typescript@5.9.3)
+      '@tailwindcss/vite':
+        specifier: ^4.1.18
+        version: 4.1.18(rolldown-vite@7.2.5(@types/node@24.10.4)(jiti@2.6.1)(tsx@4.21.0))
+      '@tanstack/react-query':
+        specifier: ^5.90.12
+        version: 5.90.12(react@19.2.3)
+      '@vitejs/plugin-react':
+        specifier: ^5.1.2
+        version: 5.1.2(rolldown-vite@7.2.5(@types/node@24.10.4)(jiti@2.6.1)(tsx@4.21.0))
+      axios:
+        specifier: ^1.13.2
+        version: 1.13.2
+      canvas-confetti:
+        specifier: ^1.9.4
+        version: 1.9.4
+      compression:
+        specifier: ^1.8.1
+        version: 1.8.1
+      dotenv:
+        specifier: ^17.2.3
+        version: 17.2.3
+      express:
+        specifier: ^5.2.1
+        version: 5.2.1
+      fastq:
+        specifier: ^1.19.1
+        version: 1.19.1
+      get-port:
+        specifier: ^7.1.0
+        version: 7.1.0
+      lucide-react:
+        specifier: ^0.475.0
+        version: 0.475.0(react@19.2.3)
+      react:
+        specifier: ^19.2.0
+        version: 19.2.3
+      react-dom:
+        specifier: ^19.2.0
+        version: 19.2.3(react@19.2.3)
+      react-dropzone:
+        specifier: ^14.3.8
+        version: 14.3.8(react@19.2.3)
+      react-hook-form:
+        specifier: ^7.68.0
+        version: 7.68.0(react@19.2.3)
+      react-router:
+        specifier: ^7.11.0
+        version: 7.11.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      sirv:
+        specifier: ^3.0.2
+        version: 3.0.2
+      svgo:
+        specifier: ^4.0.0
+        version: 4.0.0
+      zod:
+        specifier: ^3.25.76
+        version: 3.25.76
+    devDependencies:
+      '@iconoma/eslint-config':
+        specifier: workspace:^
+        version: link:../eslint-config
+      '@iconoma/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@types/canvas-confetti':
+        specifier: ^1.9.0
+        version: 1.9.0
+      '@types/compression':
+        specifier: ^1.8.1
+        version: 1.8.1
+      '@types/express':
+        specifier: ^5.0.6
+        version: 5.0.6
+      '@types/react':
+        specifier: ^19.2.5
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.2.3
+        version: 19.2.3(@types/react@19.2.7)
+      nodemon:
+        specifier: ^3.1.11
+        version: 3.1.11
+      ts-add-js-extension:
+        specifier: ^1.6.6
+        version: 1.6.6
+      tsx:
+        specifier: ^4.21.0
+        version: 4.21.0
+      vite:
+        specifier: npm:rolldown-vite@7.2.5
+        version: rolldown-vite@7.2.5(@types/node@24.10.4)(jiti@2.6.1)(tsx@4.21.0)
 
   packages/typescript-config: {}
 
@@ -6982,11 +6982,6 @@ snapshots:
 
   '@floating-ui/utils@0.2.10': {}
 
-  '@hookform/resolvers@5.2.2(react-hook-form@7.68.0(react@19.2.1))':
-    dependencies:
-      '@standard-schema/utils': 0.3.0
-      react-hook-form: 7.68.0(react@19.2.1)
-
   '@hookform/resolvers@5.2.2(react-hook-form@7.68.0(react@19.2.3))':
     dependencies:
       '@standard-schema/utils': 0.3.0
@@ -8644,10 +8639,10 @@ snapshots:
 
   '@tanstack/query-core@5.90.12': {}
 
-  '@tanstack/react-query@5.90.12(react@19.2.1)':
+  '@tanstack/react-query@5.90.12(react@19.2.3)':
     dependencies:
       '@tanstack/query-core': 5.90.12
-      react: 19.2.1
+      react: 19.2.3
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
 
@@ -11456,16 +11451,12 @@ snapshots:
       react: 19.2.3
       scheduler: 0.27.0
 
-  react-dropzone@14.3.8(react@19.2.1):
+  react-dropzone@14.3.8(react@19.2.3):
     dependencies:
       attr-accept: 2.2.5
       file-selector: 2.1.2
       prop-types: 15.8.1
-      react: 19.2.1
-
-  react-hook-form@7.68.0(react@19.2.1):
-    dependencies:
-      react: 19.2.1
+      react: 19.2.3
 
   react-hook-form@7.68.0(react@19.2.3):
     dependencies:
@@ -11496,13 +11487,13 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.1.9
 
-  react-router@7.11.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1):
+  react-router@7.11.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
       cookie: 1.1.1
-      react: 19.2.1
+      react: 19.2.3
       set-cookie-parser: 2.7.2
     optionalDependencies:
-      react-dom: 19.2.1(react@19.2.1)
+      react-dom: 19.2.3(react@19.2.3)
 
   react-style-singleton@2.2.3(@types/react@19.1.9)(react@19.2.3):
     dependencies:
