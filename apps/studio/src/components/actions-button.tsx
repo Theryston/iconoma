@@ -30,6 +30,12 @@ function getActionMessage(action: ActionWithId): string {
       return `Add target ${action.targetId || ""} for ${action.iconKey || "icon"}`;
     case "REMOVE_EXTRA_TARGET":
       return `Remove target ${action.targetId || ""} for ${action.iconKey || "icon"}`;
+    case "CREATE_ICON":
+      return `Create icon ${action.iconKey || "icon"}`;
+    case "REMOVE_ICON":
+      return `Remove icon ${action.iconKey || "icon"}`;
+    case "REGENERATE_ICON":
+      return `Regenerate icon ${action.iconKey || "icon"}`;
     case "REGENERATE_ALL":
       return "Regenerate all icons";
     default:

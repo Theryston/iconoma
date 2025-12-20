@@ -49,6 +49,8 @@ export type Change = {
     | "ADD_EXTRA_TARGET"
     | "REMOVE_EXTRA_TARGET"
     | "CREATE_ICON"
+    | "REMOVE_ICON"
+    | "REGENERATE_ICON"
     | "REGENERATE_ALL";
   filePath?: string;
   iconKey?: string;

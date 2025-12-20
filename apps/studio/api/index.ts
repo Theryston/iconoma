@@ -173,6 +173,27 @@ apiRoutes.get("/commit/changes", async (req, res) => {
   res.json({ changes: [] });
 });
 
+apiRoutes.get("/icons", async (req, res) => {
+  const lockFile = await getLockFile();
+  if (!lockFile) {
+    return res.json({ icons: [] });
+  }
+
+  const icons = Object.entries(lockFile.icons).map(async ([iconKey, icon]) => {
+    const svgContent = await getIconContent(icon);
+    return {
+      iconKey,
+      icon,
+      svgContent,
+      pascalName: toPascalFromSeparated(iconKey),
+    };
+  });
+
+  const iconsWithContent = await Promise.all(icons);
+
+  res.json({ icons: iconsWithContent });
+});
+
 apiRoutes.post("/icons/create", async (req, res) => {
   const body = req.body as {
     name: string;
@@ -222,6 +243,31 @@ apiRoutes.get("/icons/:iconKey", async (req, res) => {
     pascalName: toPascalFromSeparated(iconKey),
     svgContent,
   });
+});
+
+apiRoutes.delete("/icons/:iconKey", async (req, res) => {
+  const iconKey = req.params.iconKey;
+
+  if (!iconKey) {
+    return res.status(400).json({ error: "Icon key is required" });
+  }
+
+  const lockFile = await getLockFile();
+  if (!lockFile) {
+    return res.status(404).json({ error: "Lock file not found" });
+  }
+
+  const icon = lockFile.icons[iconKey];
+  if (!icon) {
+    return res.status(404).json({ error: "Icon not found" });
+  }
+
+  await createAction({
+    type: "REMOVE_ICON",
+    iconKey,
+  });
+
+  res.json({ success: true });
 });
 
 apiRoutes.get("/icons/content", async (req, res) => {

@@ -53,6 +53,9 @@ export async function actionsWorker({
       case "CREATE_ICON":
         output = await createIcon(action);
         break;
+      case "REMOVE_ICON":
+        output = await removeIcon(action);
+        break;
     }
 
     table.update(actionId, {
@@ -215,6 +218,51 @@ async function migrateSvgToFile(filePath: string, iconKey: string) {
   await setLockFile(lockFile);
 
   console.log(`Migrated SVG to file for ${iconKey}`);
+}
+
+async function removeIcon(action: ActionModel) {
+  const lockFile = await getLockFile();
+  if (!lockFile) throw new Error(`Lock file not found`);
+
+  const icon = lockFile.icons[action.iconKey!];
+  if (!icon) throw new Error(`Icon ${action.iconKey} not found in lock file`);
+
+  for (const [targetId, target] of Object.entries(icon.targets)) {
+    await removeExtraTarget({
+      type: "REMOVE_EXTRA_TARGET",
+      iconKey: action.iconKey!,
+      targetId,
+      filePath: target.path,
+      status: "pending",
+      percentage: 0,
+    } as ActionModel);
+  }
+
+  if (icon.svg.content.startsWith("file://")) {
+    const iconPath = icon.svg.content.replace("file://", "");
+    const pwd = await getPwd();
+    const filePath = path.join(pwd, iconPath);
+
+    const exists = await fs
+      .access(filePath)
+      .then(() => true)
+      .catch(() => false);
+
+    if (exists) {
+      await fs.unlink(filePath);
+
+      const folder = path.dirname(filePath);
+      const files = await fs.readdir(folder).catch(() => []);
+      if (files.length === 0) {
+        await fs.rmdir(folder).catch(() => {});
+      }
+    }
+  }
+
+  delete lockFile.icons[action.iconKey!];
+  await setLockFile(lockFile);
+
+  console.log(`Removed icon ${action.iconKey}`);
 }
 
 async function createIcon(action: ActionModel) {

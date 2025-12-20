@@ -21,6 +21,10 @@
     {
       "targetId": "react",
       "outputPath": "./components/icons.tsx"
+    },
+    {
+      "targetId": "react-native",
+      "outputPath": "./components/native-icons.tsx"
     }
   ],
   "colorVariables": [

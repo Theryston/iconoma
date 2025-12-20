@@ -1,28 +1,15 @@
 {
-  "configHash": "ce74ed98e39de900398a313335a6435f1790d475957fe9bf19623db5b2b74e66",
+  "configHash": "c13f646620c9a706ff9c0e6043b1f5250988fe74a7d3e84d856443a7450da95a",
   "icons": {
     "iconoma": {
       "name": "iconoma",
-      "tags": [],
+      "tags": [
+        "iconoma",
+        "studio",
+        "cli"
+      ],
       "svg": {
         "content": "file://icons\\iconoma.svg",
-        "hash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a"
-      },
-      "targets": {
-        "react": {
-          "path": "./components/icons.tsx",
-          "builtFrom": {
-            "svgHash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a",
-            "configHash": "17d5738ad3d41294fc963d684257db923648ea18b3b988b48acdaa3b516e0027"
-          }
-        }
-      }
-    },
-    "iconoma-studio": {
-      "name": "iconoma-studio",
-      "tags": [],
-      "svg": {
-        "content": "file://icons\\iconoma-studio.svg",
         "hash": "7ec4e41f7d3c1a6396280323585911c8bcd7a929709191c746926b4cad22d8af"
       },
       "targets": {
@@ -30,7 +17,14 @@
           "path": "./components/icons.tsx",
           "builtFrom": {
             "svgHash": "7ec4e41f7d3c1a6396280323585911c8bcd7a929709191c746926b4cad22d8af",
-            "configHash": "ce74ed98e39de900398a313335a6435f1790d475957fe9bf19623db5b2b74e66"
+            "configHash": "c13f646620c9a706ff9c0e6043b1f5250988fe74a7d3e84d856443a7450da95a"
+          }
+        },
+        "react-native": {
+          "path": "./components/native-icons.tsx",
+          "builtFrom": {
+            "svgHash": "7ec4e41f7d3c1a6396280323585911c8bcd7a929709191c746926b4cad22d8af",
+            "configHash": "c13f646620c9a706ff9c0e6043b1f5250988fe74a7d3e84d856443a7450da95a"
           }
         }
       }

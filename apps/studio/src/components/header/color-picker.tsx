@@ -27,7 +27,7 @@ export function ColorPicker() {
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 w-fit whitespace-nowrap">
       {colorPickerHint && (
         <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
           <span>{colorPickerHint}</span>

@@ -30,6 +30,16 @@ export function App({ url }: AppProps = {}) {
                   path="/icons/:iconKey/preview"
                   element={<IconPreview />}
                 />
+                <Route
+                  path="/icons/:iconKey/edit"
+                  element={
+                    <div className="flex h-[calc(100vh-4rem)] items-center justify-center">
+                      <div className="text-muted-foreground">
+                        Edit page coming soon...
+                      </div>
+                    </div>
+                  }
+                />
               </Route>
             </Routes>
           </Router>
