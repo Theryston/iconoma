@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "type": "module",
   "main": "dist/server.js",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/theryston/iconoma.git"
