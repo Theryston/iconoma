@@ -7,7 +7,7 @@ import {
 import { Input } from "@iconoma/ui/components/input";
 import { useStudio } from "../../context";
 import { useConfig } from "../../hooks/config";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, PaintBucket } from "lucide-react";
 import { ScrollArea } from "@iconoma/ui/components/scroll-area";
 import { Separator } from "@iconoma/ui/components/separator";
 
@@ -23,7 +23,28 @@ export function ColorPicker() {
   const colorVariables = config?.colorVariables || [];
 
   const getColorForVariable = (variable: string): string => {
-    return colorVariableValues[variable] || "#ffffff";
+    return colorVariableValues[variable] || "#e5e5e5";
+  };
+
+  const getContrastColor = (color: string): string => {
+    let hex = color.replace("#", "");
+
+    if (hex.length === 3) {
+      hex = hex
+        .split("")
+        .map((c) => c + c)
+        .join("");
+    }
+
+    if (hex.length !== 6) return "#000000";
+
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+
+    const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+
+    return yiq >= 128 ? "#000000" : "#e5e5e5";
   };
 
   return (
@@ -43,8 +64,13 @@ export function ColorPicker() {
             aria-label="Select preview color"
           >
             <div
-              className="absolute inset-0"
+              className="absolute inset-0 -z-10"
               style={{ backgroundColor: previewColor }}
+            />
+            <PaintBucket
+              style={{
+                color: getContrastColor(previewColor),
+              }}
             />
           </Button>
         </PopoverTrigger>

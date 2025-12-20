@@ -1,5 +1,4 @@
 import { Button } from "@iconoma/ui/components/button";
-import { CommitButton } from "./commit-button";
 import { PlusIcon } from "lucide-react";
 import { ConfigButton } from "./config-button";
 import { Link } from "react-router";
@@ -21,12 +20,12 @@ export function Header() {
         <div className="flex items-center gap-2">
           <ColorPicker />
           <ConfigButton />
-          <Button size="icon" asChild>
+          <Button size="sm" asChild>
             <Link to="/icons/create">
               <PlusIcon />
+              <span className="text-sm font-medium">Create icon</span>
             </Link>
           </Button>
-          <CommitButton />
         </div>
       </header>
     </>

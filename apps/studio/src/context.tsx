@@ -15,9 +15,9 @@ export const StudioProvider = ({ children }: { children: React.ReactNode }) => {
   const savedColor =
     typeof window !== "undefined"
       ? localStorage.getItem("iconoma-studio-preview-color")
-      : "#ffffff";
+      : "#e5e5e5";
   const [previewColor, setPreviewColor] = useState<string>(
-    savedColor || "#ffffff"
+    savedColor || "#e5e5e5"
   );
   const [colorPickerHint, setColorPickerHint] = useState<string | null>(null);
 

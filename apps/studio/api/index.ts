@@ -169,10 +169,6 @@ apiRoutes.get("/actions", async (req, res) => {
   res.json({ actions });
 });
 
-apiRoutes.get("/commit/changes", async (req, res) => {
-  res.json({ changes: [] });
-});
-
 apiRoutes.get("/icons", async (req, res) => {
   const lockFile = await getLockFile();
   if (!lockFile) {

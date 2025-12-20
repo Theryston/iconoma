@@ -31,6 +31,7 @@ export default function EditIcon() {
 
   const isValidSvg = useMemo(() => {
     if (!svgContent || svgContent.trim().length === 0) return false;
+
     try {
       const parser = new DOMParser();
       const doc = parser.parseFromString(svgContent, "image/svg+xml");
