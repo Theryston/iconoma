@@ -20,7 +20,7 @@ npx @iconoma/cli studio
 
 Icon libraries tend to become messy as projects grow:
 
-- inconsistent sizes and alignment (icons “look bigger” even with the same size)
+- inconsistent sizes and alignment (icons "look bigger" even with the same size)
 - hardcoded colors that break themes/dark mode
 - duplicated icons with different names
 - manual export steps (time-consuming and error-prone)
@@ -58,7 +58,7 @@ Iconoma supports a **color map** approach so you can convert colors into:
 - `currentColor`
 - CSS variables/tokens (e.g. `var(--icons-secondary)`)
 
-This makes icons theme-friendly and prevents “random SVG colors” from leaking into your UI.
+This makes icons theme-friendly and prevents "random SVG colors" from leaking into your UI.
 
 ### ✅ Automatic target generation (React, React Native, SVG)
 
@@ -82,7 +82,7 @@ This makes builds **deterministic**, helps you to understand the changes using G
 
 ### ✅ Studio (UI) integrated with the workflow
 
-Iconoma includes a “Studio” interface to make icon curation easier:
+Iconoma includes a "Studio" interface to make icon curation easier:
 
 - browse and search icons
 - preview icons in different sizes/themes
