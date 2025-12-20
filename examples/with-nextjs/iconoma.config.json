@@ -6,8 +6,6 @@
   "svgo": {
     "plugins": [
       "removeDimensions",
-      "removeHiddenElems",
-      "removeTitle",
       {
         "name": "convertColors",
         "params": {

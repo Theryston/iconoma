@@ -56,6 +56,12 @@ export async function actionsWorker({
       case "REMOVE_ICON":
         output = await removeIcon(action);
         break;
+      case "REGENERATE_ICON":
+        output = await regenerateIcon(action);
+        break;
+      case "REGENERATE_ALL":
+        output = await regenerateAll(action, actionId, table);
+        break;
     }
 
     table.update(actionId, {
@@ -263,6 +269,87 @@ async function removeIcon(action: ActionModel) {
   await setLockFile(lockFile);
 
   console.log(`Removed icon ${action.iconKey}`);
+}
+
+async function regenerateAll(
+  action: ActionModel,
+  actionId: number,
+  table: Table<ActionModel>
+) {
+  const lockFile = await getLockFile();
+  if (!lockFile) throw new Error(`Lock file not found`);
+
+  const iconKeys = Object.keys(lockFile.icons);
+  const totalIcons = iconKeys.length;
+
+  if (totalIcons === 0) {
+    console.log("No icons to regenerate");
+    return;
+  }
+
+  table.update(actionId, {
+    ...action,
+    status: "processing",
+    percentage: 0,
+  });
+
+  for (let i = 0; i < iconKeys.length; i++) {
+    const iconKey = iconKeys[i];
+
+    try {
+      await regenerateIcon({
+        type: "REGENERATE_ICON",
+        iconKey,
+        status: "pending",
+        percentage: 0,
+      } as ActionModel);
+
+      const percentage = Math.round(((i + 1) / totalIcons) * 100);
+      table.update(actionId, {
+        ...action,
+        status: "processing",
+        percentage,
+      });
+
+      console.log(`Regenerated icon ${iconKey} (${i + 1}/${totalIcons})`);
+    } catch (error) {
+      console.error(`Failed to regenerate icon ${iconKey}:`, error);
+    }
+  }
+
+  console.log(`Regenerated all ${totalIcons} icons`);
+}
+
+async function regenerateIcon(action: ActionModel) {
+  const lockFile = await getLockFile();
+  if (!lockFile) throw new Error(`Lock file not found`);
+
+  const icon = lockFile.icons[action.iconKey!];
+  if (!icon) throw new Error(`Icon ${action.iconKey} not found in lock file`);
+
+  const svgContent = await getIconContent(icon);
+  const iconName = icon.name;
+  const tags = icon.tags;
+
+  await removeIcon({
+    type: "REMOVE_ICON",
+    iconKey: action.iconKey!,
+    status: "pending",
+    percentage: 0,
+  } as ActionModel);
+
+  await createIcon({
+    type: "CREATE_ICON",
+    metadata: {
+      name: iconName,
+      tags,
+      content: svgContent,
+    },
+    status: "pending",
+    percentage: 0,
+  } as ActionModel);
+
+  console.log(`Regenerated icon ${action.iconKey}`);
 }
 
 async function createIcon(action: ActionModel) {

@@ -1,5 +1,5 @@
 {
-  "configHash": "c13f646620c9a706ff9c0e6043b1f5250988fe74a7d3e84d856443a7450da95a",
+  "configHash": "b023b6213f47de01898b475a6119c9f072fb4098529abb84061dbdda17e73e55",
   "icons": {
     "iconoma": {
       "name": "iconoma",
@@ -17,14 +17,38 @@
           "path": "./components/icons.tsx",
           "builtFrom": {
             "svgHash": "7ec4e41f7d3c1a6396280323585911c8bcd7a929709191c746926b4cad22d8af",
-            "configHash": "c13f646620c9a706ff9c0e6043b1f5250988fe74a7d3e84d856443a7450da95a"
+            "configHash": "b023b6213f47de01898b475a6119c9f072fb4098529abb84061dbdda17e73e55"
           }
         },
         "react-native": {
           "path": "./components/native-icons.tsx",
           "builtFrom": {
             "svgHash": "7ec4e41f7d3c1a6396280323585911c8bcd7a929709191c746926b4cad22d8af",
-            "configHash": "c13f646620c9a706ff9c0e6043b1f5250988fe74a7d3e84d856443a7450da95a"
+            "configHash": "b023b6213f47de01898b475a6119c9f072fb4098529abb84061dbdda17e73e55"
+          }
+        }
+      }
+    },
+    "dede": {
+      "name": "dede",
+      "tags": [],
+      "svg": {
+        "content": "file://icons\\dede.svg",
+        "hash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a",
+            "configHash": "b023b6213f47de01898b475a6119c9f072fb4098529abb84061dbdda17e73e55"
+          }
+        },
+        "react-native": {
+          "path": "./components/native-icons.tsx",
+          "builtFrom": {
+            "svgHash": "ab3420c8e6330c30bdfbfc7f54fb914410ebe5aa4f05ce43a485ad035b5df92a",
+            "configHash": "b023b6213f47de01898b475a6119c9f072fb4098529abb84061dbdda17e73e55"
           }
         }
       }
