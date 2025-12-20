@@ -1,91 +1,11 @@
 {
-  "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a",
+  "configHash": "644c499b13e8c05175819cfc50f45853bf9028e7f7a90a737bec6fb1be8c33ae",
   "icons": {
-    "iconoma": {
-      "name": "iconoma",
-      "tags": [],
-      "svg": {
-        "content": "file://icons\\iconoma.svg",
-        "hash": "166ab79702894031cf7ee190d29276d5282e50bdebd4f486c9762d8bf4eeccfc"
-      },
-      "targets": {
-        "react": {
-          "path": "./components/icons.tsx",
-          "builtFrom": {
-            "svgHash": "166ab79702894031cf7ee190d29276d5282e50bdebd4f486c9762d8bf4eeccfc",
-            "configHash": "b8b20bb960ca1bdf67ff0f2bd89369edbbd682efa8df020a8383cd0fb9e602d0"
-          }
-        },
-        "react-native": {
-          "path": "./react-native/icons/iconoma.tsx",
-          "builtFrom": {
-            "svgHash": "166ab79702894031cf7ee190d29276d5282e50bdebd4f486c9762d8bf4eeccfc",
-            "configHash": "d3b5574d0d1abce090f8a9b91b1d90216a50e1ec804d7751c6f44844bb68f799"
-          }
-        }
-      },
-      "colorVariableKeys": [
-        "currentColor",
-        "var(--icons-secondary)"
-      ]
-    },
-    "clock": {
-      "name": "clock",
-      "tags": [
-        "time"
-      ],
-      "svg": {
-        "content": "file://icons\\clock.svg",
-        "hash": "b26620d8a22f2acc0ace78a9d712f7a67f0b810fc87649f5f9663b847e266fd6"
-      },
-      "targets": {
-        "react": {
-          "path": "./components/icons.tsx",
-          "builtFrom": {
-            "svgHash": "b26620d8a22f2acc0ace78a9d712f7a67f0b810fc87649f5f9663b847e266fd6",
-            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
-          }
-        },
-        "react-native": {
-          "path": "./react-native/icons/clock.tsx",
-          "builtFrom": {
-            "svgHash": "b26620d8a22f2acc0ace78a9d712f7a67f0b810fc87649f5f9663b847e266fd6",
-            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
-          }
-        }
-      },
-      "colorVariableKeys": []
-    },
-    "washing-machine": {
-      "name": "washing-machine",
-      "tags": [],
-      "svg": {
-        "content": "file://icons\\washing-machine.svg",
-        "hash": "337cf51a11770f16be4ee68f666d7b391ade6b4dee911b400aa99e4acde36497"
-      },
-      "targets": {
-        "react": {
-          "path": "./components/icons.tsx",
-          "builtFrom": {
-            "svgHash": "337cf51a11770f16be4ee68f666d7b391ade6b4dee911b400aa99e4acde36497",
-            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
-          }
-        },
-        "react-native": {
-          "path": "./react-native/icons/washing-machine.tsx",
-          "builtFrom": {
-            "svgHash": "337cf51a11770f16be4ee68f666d7b391ade6b4dee911b400aa99e4acde36497",
-            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
-          }
-        }
-      },
-      "colorVariableKeys": [
-        "currentColor"
-      ]
-    },
     "accelerate": {
       "name": "accelerate",
-      "tags": [],
+      "tags": [
+        "rocket"
+      ],
       "svg": {
         "content": "file://icons\\accelerate.svg",
         "hash": "9a89d2741d4ae881e62ceb0693273311e9811e3fbb72ca3a7f573727c59cba8f"
@@ -95,14 +15,7 @@
           "path": "./components/icons.tsx",
           "builtFrom": {
             "svgHash": "9a89d2741d4ae881e62ceb0693273311e9811e3fbb72ca3a7f573727c59cba8f",
-            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
-          }
-        },
-        "react-native": {
-          "path": "./react-native/icons/accelerate.tsx",
-          "builtFrom": {
-            "svgHash": "9a89d2741d4ae881e62ceb0693273311e9811e3fbb72ca3a7f573727c59cba8f",
-            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
+            "configHash": "644c499b13e8c05175819cfc50f45853bf9028e7f7a90a737bec6fb1be8c33ae"
           }
         }
       },
@@ -111,54 +24,24 @@
         "currentColor"
       ]
     },
-    "happy": {
-      "name": "happy",
+    "iconoma": {
+      "name": "iconoma",
       "tags": [
-        "happy",
-        "emoji"
+        "iconoma",
+        "studio",
+        "cli",
+        "logo"
       ],
       "svg": {
-        "content": "file://icons\\happy.svg",
-        "hash": "edca383cd55847b89359334284603c1a802d6482bf980714ad9f1b9751cd3355"
+        "content": "file://icons\\iconoma.svg",
+        "hash": "0a82daa9287a4a0d50b35055d1f5a2206549ff992cad5289aca0065e31a54a79"
       },
       "targets": {
         "react": {
           "path": "./components/icons.tsx",
           "builtFrom": {
-            "svgHash": "edca383cd55847b89359334284603c1a802d6482bf980714ad9f1b9751cd3355",
-            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
-          }
-        },
-        "react-native": {
-          "path": "./react-native/icons/happy.tsx",
-          "builtFrom": {
-            "svgHash": "edca383cd55847b89359334284603c1a802d6482bf980714ad9f1b9751cd3355",
-            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
-          }
-        }
-      },
-      "colorVariableKeys": []
-    },
-    "logo-studio": {
-      "name": "logo-studio",
-      "tags": [],
-      "svg": {
-        "content": "file://icons\\logo-studio.svg",
-        "hash": "b954f078586baea9eae819ec4679e4f9171d3154edd91e2f34b7e809625d03bc"
-      },
-      "targets": {
-        "react": {
-          "path": "./components/icons.tsx",
-          "builtFrom": {
-            "svgHash": "b954f078586baea9eae819ec4679e4f9171d3154edd91e2f34b7e809625d03bc",
-            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
-          }
-        },
-        "react-native": {
-          "path": "./react-native/icons/logo-studio.tsx",
-          "builtFrom": {
-            "svgHash": "b954f078586baea9eae819ec4679e4f9171d3154edd91e2f34b7e809625d03bc",
-            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
+            "svgHash": "0a82daa9287a4a0d50b35055d1f5a2206549ff992cad5289aca0065e31a54a79",
+            "configHash": "644c499b13e8c05175819cfc50f45853bf9028e7f7a90a737bec6fb1be8c33ae"
           }
         }
       },
@@ -169,6 +52,7 @@
     "smile-plus": {
       "name": "smile-plus",
       "tags": [
+        "plus",
         "smile",
         "happy"
       ],
@@ -181,18 +65,75 @@
           "path": "./components/icons.tsx",
           "builtFrom": {
             "svgHash": "08ea8cba38d2e9cfe884f7ae0d99ed42dccef65e8a09622b335103f9e0d167bf",
-            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
-          }
-        },
-        "react-native": {
-          "path": "./react-native/icons/smile-plus.tsx",
-          "builtFrom": {
-            "svgHash": "08ea8cba38d2e9cfe884f7ae0d99ed42dccef65e8a09622b335103f9e0d167bf",
-            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
+            "configHash": "644c499b13e8c05175819cfc50f45853bf9028e7f7a90a737bec6fb1be8c33ae"
           }
         }
       },
       "colorVariableKeys": []
+    },
+    "cloud-upload": {
+      "name": "cloud-upload",
+      "tags": [
+        "cloud",
+        "upload",
+        "arrow",
+        "files"
+      ],
+      "svg": {
+        "content": "file://icons\\cloud-upload.svg",
+        "hash": "7a95ca173a898f5638789cd43d782d524dd62aa2c96ad56f2e85c4bd2aaa86b1"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "7a95ca173a898f5638789cd43d782d524dd62aa2c96ad56f2e85c4bd2aaa86b1",
+            "configHash": "644c499b13e8c05175819cfc50f45853bf9028e7f7a90a737bec6fb1be8c33ae"
+          }
+        }
+      },
+      "colorVariableKeys": []
+    },
+    "file": {
+      "name": "file",
+      "tags": [
+        "files",
+        "docs"
+      ],
+      "svg": {
+        "content": "file://icons\\file.svg",
+        "hash": "c6b1394da2635d9367aed778c83432709324ac8908a138ca8f34dcd6c3ea29f9"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "c6b1394da2635d9367aed778c83432709324ac8908a138ca8f34dcd6c3ea29f9",
+            "configHash": "644c499b13e8c05175819cfc50f45853bf9028e7f7a90a737bec6fb1be8c33ae"
+          }
+        }
+      },
+      "colorVariableKeys": []
+    },
+    "washing-machine": {
+      "name": "washing-machine",
+      "tags": [],
+      "svg": {
+        "content": "file://icons\\washing-machine.svg",
+        "hash": "82f793e93b5b2a1d95870668370907f46dacdc3f75f73a38326283878b119d6a"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "82f793e93b5b2a1d95870668370907f46dacdc3f75f73a38326283878b119d6a",
+            "configHash": "644c499b13e8c05175819cfc50f45853bf9028e7f7a90a737bec6fb1be8c33ae"
+          }
+        }
+      },
+      "colorVariableKeys": [
+        "currentColor"
+      ]
     }
   }
 }
