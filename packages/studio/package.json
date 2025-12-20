@@ -1,6 +1,6 @@
 {
   "name": "@iconoma/studio",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "main": "dist/server.js",
   "private": false,
@@ -84,10 +84,5 @@
   },
   "exports": {
     ".": "./dist/server.js"
-  },
-  "pnpm": {
-    "overrides": {
-      "vite": "npm:rolldown-vite@7.2.5"
-    }
   }
 }

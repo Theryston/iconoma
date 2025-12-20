@@ -79,7 +79,8 @@ function ClientOnlyToaster({ ...props }: ToasterProps) {
           "--normal-text": "var(--popover-foreground)",
           "--normal-border": "var(--border)",
           "--border-radius": "var(--radius)",
-        } as React.CSSProperties
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any
       }
       {...props}
     />

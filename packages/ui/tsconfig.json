@@ -2,10 +2,12 @@
   "extends": "@iconoma/typescript-config/react-library.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "rootDir": "./src",
+    "outDir": "./dist",
     "paths": {
       "@iconoma/ui/*": ["./src/*"]
     }
   },
-  "include": ["."],
+  "include": ["./src/**/*"],
   "exclude": ["node_modules", "dist"]
 }

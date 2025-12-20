@@ -12,6 +12,7 @@
   },
   "bugs": "https://github.com/theryston/iconoma/issues",
   "dependencies": {
+    "@iconoma/studio": "workspace:*",
     "@oclif/core": "^4",
     "@oclif/plugin-help": "^6",
     "figlet": "^1.9.4",
@@ -22,7 +23,6 @@
   "devDependencies": {
     "@iconoma/eslint-config": "workspace:*",
     "@iconoma/typescript-config": "workspace:*",
-    "@iconoma/studio": "workspace:*",
     "@types/chai": "^4",
     "@types/mocha": "^10",
     "@types/node": "^18",
