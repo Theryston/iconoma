@@ -4,11 +4,13 @@ import "@iconoma/ui/globals.css";
 import Home from "./pages";
 import CreateIcon from "./pages/icons/create";
 import IconPreview from "./pages/icons/[iconKey]/preview";
+import EditIcon from "./pages/icons/[iconKey]/edit";
 import Layout from "./pages/layout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@iconoma/ui/components/sonner";
 import { ActionsButton } from "./components/actions-button";
 import { StudioProvider } from "./context";
+import { DragDropProvider } from "./components/drag-drop-provider";
 
 type AppProps = {
   url?: string;
@@ -22,26 +24,19 @@ export function App({ url }: AppProps = {}) {
       <QueryClientProvider client={queryClient}>
         <StudioProvider>
           <Router url={url}>
-            <Routes>
-              <Route element={<Layout />}>
-                <Route path="/" element={<Home />} />
-                <Route path="/icons/create" element={<CreateIcon />} />
-                <Route
-                  path="/icons/:iconKey/preview"
-                  element={<IconPreview />}
-                />
-                <Route
-                  path="/icons/:iconKey/edit"
-                  element={
-                    <div className="flex h-[calc(100vh-4rem)] items-center justify-center">
-                      <div className="text-muted-foreground">
-                        Edit page coming soon...
-                      </div>
-                    </div>
-                  }
-                />
-              </Route>
-            </Routes>
+            <DragDropProvider>
+              <Routes>
+                <Route element={<Layout />}>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/icons/create" element={<CreateIcon />} />
+                  <Route
+                    path="/icons/:iconKey/preview"
+                    element={<IconPreview />}
+                  />
+                  <Route path="/icons/:iconKey/edit" element={<EditIcon />} />
+                </Route>
+              </Routes>
+            </DragDropProvider>
           </Router>
 
           <ActionsButton />

@@ -3,6 +3,8 @@ import axios from "axios";
 import type { LockFileIcon } from "../../api/types";
 
 export function useCreateIcon() {
+  const queryClient = useQueryClient();
+
   return useMutation<
     { icon: LockFileIcon; pascalName: string },
     Error,
@@ -19,6 +21,11 @@ export function useCreateIcon() {
       content: string;
       colorMap?: Record<string, string>;
     }) => axios.post("/api/icons/create", data).then((res) => res.data),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["icons"] });
+      const iconKey = data.icon.name.toLowerCase().replace(/ /g, "-");
+      queryClient.invalidateQueries({ queryKey: ["icon", iconKey] });
+    },
   });
 }
 

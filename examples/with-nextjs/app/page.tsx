@@ -13,8 +13,8 @@ const Page: FC = () => {
         {Object.entries(Icons).map(([key, Icon]) => (
           <div
             key={key}
-            className="text-blue-500 text-4xl"
-            style={{ "--icons-secondary": "#ff9900" } as React.CSSProperties}
+            className="text-blue-300 text-4xl"
+            style={{ "--icons-secondary": "#cdb3ff" } as React.CSSProperties}
           >
             <Icon />
           </div>

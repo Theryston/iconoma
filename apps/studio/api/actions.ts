@@ -379,7 +379,15 @@ async function createIcon(action: ActionModel) {
     plugins: [
       ...(config.svgo?.plugins ?? []),
       "convertStyleToAttrs",
-      ...(colorMap ? [mapColors({ map: colorMap })] : []),
+      ...(colorMap
+        ? [
+            mapColors({
+              map: colorMap,
+              replaceStyleElementText: true,
+              replaceInlineStyle: true,
+            }),
+          ]
+        : []),
     ],
   });
 

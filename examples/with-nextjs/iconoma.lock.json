@@ -55,6 +55,144 @@
         }
       },
       "colorVariableKeys": []
+    },
+    "washing-machine": {
+      "name": "washing-machine",
+      "tags": [],
+      "svg": {
+        "content": "file://icons\\washing-machine.svg",
+        "hash": "337cf51a11770f16be4ee68f666d7b391ade6b4dee911b400aa99e4acde36497"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "337cf51a11770f16be4ee68f666d7b391ade6b4dee911b400aa99e4acde36497",
+            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
+          }
+        },
+        "react-native": {
+          "path": "./react-native/icons/washing-machine.tsx",
+          "builtFrom": {
+            "svgHash": "337cf51a11770f16be4ee68f666d7b391ade6b4dee911b400aa99e4acde36497",
+            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
+          }
+        }
+      },
+      "colorVariableKeys": [
+        "currentColor"
+      ]
+    },
+    "accelerate": {
+      "name": "accelerate",
+      "tags": [],
+      "svg": {
+        "content": "file://icons\\accelerate.svg",
+        "hash": "9a89d2741d4ae881e62ceb0693273311e9811e3fbb72ca3a7f573727c59cba8f"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "9a89d2741d4ae881e62ceb0693273311e9811e3fbb72ca3a7f573727c59cba8f",
+            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
+          }
+        },
+        "react-native": {
+          "path": "./react-native/icons/accelerate.tsx",
+          "builtFrom": {
+            "svgHash": "9a89d2741d4ae881e62ceb0693273311e9811e3fbb72ca3a7f573727c59cba8f",
+            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
+          }
+        }
+      },
+      "colorVariableKeys": [
+        "var(--icons-secondary)",
+        "currentColor"
+      ]
+    },
+    "happy": {
+      "name": "happy",
+      "tags": [
+        "happy",
+        "emoji"
+      ],
+      "svg": {
+        "content": "file://icons\\happy.svg",
+        "hash": "edca383cd55847b89359334284603c1a802d6482bf980714ad9f1b9751cd3355"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "edca383cd55847b89359334284603c1a802d6482bf980714ad9f1b9751cd3355",
+            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
+          }
+        },
+        "react-native": {
+          "path": "./react-native/icons/happy.tsx",
+          "builtFrom": {
+            "svgHash": "edca383cd55847b89359334284603c1a802d6482bf980714ad9f1b9751cd3355",
+            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
+          }
+        }
+      },
+      "colorVariableKeys": []
+    },
+    "logo-studio": {
+      "name": "logo-studio",
+      "tags": [],
+      "svg": {
+        "content": "file://icons\\logo-studio.svg",
+        "hash": "b954f078586baea9eae819ec4679e4f9171d3154edd91e2f34b7e809625d03bc"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "b954f078586baea9eae819ec4679e4f9171d3154edd91e2f34b7e809625d03bc",
+            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
+          }
+        },
+        "react-native": {
+          "path": "./react-native/icons/logo-studio.tsx",
+          "builtFrom": {
+            "svgHash": "b954f078586baea9eae819ec4679e4f9171d3154edd91e2f34b7e809625d03bc",
+            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
+          }
+        }
+      },
+      "colorVariableKeys": [
+        "currentColor"
+      ]
+    },
+    "smile-plus": {
+      "name": "smile-plus",
+      "tags": [
+        "smile",
+        "happy"
+      ],
+      "svg": {
+        "content": "file://icons\\smile-plus.svg",
+        "hash": "08ea8cba38d2e9cfe884f7ae0d99ed42dccef65e8a09622b335103f9e0d167bf"
+      },
+      "targets": {
+        "react": {
+          "path": "./components/icons.tsx",
+          "builtFrom": {
+            "svgHash": "08ea8cba38d2e9cfe884f7ae0d99ed42dccef65e8a09622b335103f9e0d167bf",
+            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
+          }
+        },
+        "react-native": {
+          "path": "./react-native/icons/smile-plus.tsx",
+          "builtFrom": {
+            "svgHash": "08ea8cba38d2e9cfe884f7ae0d99ed42dccef65e8a09622b335103f9e0d167bf",
+            "configHash": "2af8a3c136a8c8ebef74d8a014467ceb53dee47f8ca2498318a9f7ee0dea401a"
+          }
+        }
+      },
+      "colorVariableKeys": []
     }
   }
 }
