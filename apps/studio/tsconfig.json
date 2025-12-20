@@ -4,6 +4,8 @@
     "baseUrl": ".",
     "module": "ESNext",
     "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
     "paths": {
       "@/*": ["./*"]
     },
