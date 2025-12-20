@@ -38,8 +38,9 @@ export default class Studio extends Command {
       await open(url, { wait: true });
 
       spinner.success({ text: `Studio started at ${url}` });
-    } catch {
+    } catch (error) {
       spinner.error({ text: `Failed to start Studio` });
+      console.error(error);
       process.exit(1);
     }
   }
