@@ -43,6 +43,10 @@ Each icon can have:
 
 This makes it easy to keep icons discoverable and consistent across the team.
 
+### ✅ Zero dependencies in your project
+
+Iconoma adds **no dependencies** to your project. It handles and adds the icon outputs directly in your project, already ready for use, without any dependencies. You don't even need to install Iconoma in your project—just use `npx @iconoma/cli` when needed.
+
 ### ✅ SVGO optimization + custom configuration
 
 Iconoma uses **SVGO** to optimize and normalize your SVGs (removing unnecessary data, minimizing output, and improving consistency).
