@@ -3,10 +3,7 @@
   "version": "0.0.1",
   "type": "module",
   "private": true,
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/theryston/iconoma.git"
-  },
+  "repository": "github:Theryston/iconoma",
   "homepage": "https://github.com/theryston/iconoma",
   "license": "MIT",
   "scripts": {

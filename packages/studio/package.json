@@ -7,10 +7,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/theryston/iconoma.git"
-  },
+  "repository": "github:Theryston/iconoma",
   "homepage": "https://github.com/theryston/iconoma",
   "keywords": [
     "oclif",
