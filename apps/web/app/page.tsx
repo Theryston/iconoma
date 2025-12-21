@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
+import { Logo } from "@/components/icons";
 
 export default function Page() {
   const [copied, setCopied] = useState(false);
@@ -82,13 +83,7 @@ export default function Page() {
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-6">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <Image
-              src="/icon.png"
-              alt="Iconoma"
-              width={32}
-              height={32}
-              className="size-8"
-            />
+            <Logo className="size-8" />
             <span className="text-xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
               Iconoma
             </span>
