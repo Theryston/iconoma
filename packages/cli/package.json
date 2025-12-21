@@ -1,7 +1,7 @@
 {
   "name": "@iconoma/cli",
   "description": "A developer-friendly tool to manage and organize icons through CLI and web studio",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Theryston Santos @Theryston",
   "bin": {
     "iconoma": "bin/run.js"
