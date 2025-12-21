@@ -9,6 +9,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.8",
     "@iconoma/eslint-config": "workspace:*",
     "@iconoma/typescript-config": "workspace:*",
     "prettier": "^3.7.4",
