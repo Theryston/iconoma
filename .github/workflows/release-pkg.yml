@@ -11,15 +11,9 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-      packages: write
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
-        with:
-          persist-credentials: true
 
       - name: Setup Node.js 20
         uses: actions/setup-node@v3
@@ -49,4 +43,4 @@ jobs:
           title: "chore: update versions"
           publish: pnpm changeset publish
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
