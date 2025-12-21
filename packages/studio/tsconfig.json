@@ -7,7 +7,9 @@
     "allowImportingTsExtensions": true,
     "noEmit": true,
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@iconoma/ui": ["../ui/src/index"],
+      "@iconoma/ui/*": ["../ui/src/*"]
     },
     "outDir": "dist"
   },

@@ -2,40 +2,14 @@
   "name": "@iconoma/ui",
   "version": "0.0.1",
   "type": "module",
-  "private": false,
-  "publishConfig": {
-    "access": "public"
-  },
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/theryston/iconoma.git"
   },
   "homepage": "https://github.com/theryston/iconoma",
-  "keywords": [
-    "oclif",
-    "iconoma",
-    "icon management",
-    "icons",
-    "studio",
-    "CLI",
-    "SVG",
-    "react",
-    "icon pipeline",
-    "icon optimizer",
-    "icon library",
-    "SVGO",
-    "design system",
-    "icon build",
-    "icon generator",
-    "react icons"
-  ],
-  "files": [
-    "dist"
-  ],
   "license": "MIT",
-  "author": "Theryston Santos @Theryston",
   "scripts": {
-    "build": "shx rm -rf dist && tsc && shx mkdir -p dist/styles && shx cp src/styles/globals.css dist/styles/ && shx cp postcss.config.mjs dist/",
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
@@ -83,10 +57,10 @@
     "typescript": "^5.9.2"
   },
   "exports": {
-    "./globals.css": "./dist/styles/globals.css",
-    "./postcss.config": "./dist/postcss.config.mjs",
-    "./lib/*": "./dist/lib/*.js",
-    "./components/*": "./dist/components/*.js",
-    "./hooks/*": "./dist/hooks/*.js"
+    "./globals.css": "./src/styles/globals.css",
+    "./postcss.config": "./postcss.config.mjs",
+    "./lib/*": "./src/lib/*.ts",
+    "./components/*": "./src/components/*.ts",
+    "./hooks/*": "./src/hooks/*.ts"
   }
 }

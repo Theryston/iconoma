@@ -1,6 +1,6 @@
 {
   "name": "@iconoma/studio",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "type": "module",
   "main": "dist/server.js",
   "private": false,
@@ -44,7 +44,6 @@
   ],
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
-    "@iconoma/ui": "workspace:*",
     "@svgr/core": "^8.1.0",
     "@svgr/plugin-jsx": "^8.1.0",
     "@svgr/plugin-prettier": "^8.1.0",
