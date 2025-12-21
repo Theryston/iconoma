@@ -173,13 +173,21 @@ export function IconFormModal({
 
     const finalColorMap = colorMap || colorMapping;
 
+    const filteredColorMap = Object.fromEntries(
+      Object.entries(finalColorMap).filter(
+        ([_, value]) => value !== "__KEEP_HARDCODE__"
+      )
+    );
+
     try {
       const result = await createIcon.mutateAsync({
         name: data.name,
         tags: tagsArray,
         content: data.content,
         colorMap:
-          Object.keys(finalColorMap).length > 0 ? finalColorMap : undefined,
+          Object.keys(filteredColorMap).length > 0
+            ? filteredColorMap
+            : undefined,
       });
 
       toast.success(
@@ -206,8 +214,16 @@ export function IconFormModal({
       value: `var(${varName})`,
       label: varName,
     })),
+    { value: "__KEEP_HARDCODE__", label: "Keep hardcode" },
     { value: "__CREATE_NEW__", label: "+ Create new variable..." },
   ];
+
+  const hasHardcodedColors = useMemo(() => {
+    if (colors.length <= 1) return false;
+    return Object.values(colorMapping).some(
+      (value) => value === "__KEEP_HARDCODE__"
+    );
+  }, [colorMapping, colors.length]);
 
   const handleCreateVariable = async (color: string, variableName: string) => {
     if (!variableName.trim()) {
@@ -442,6 +458,21 @@ export function IconFormModal({
                       );
                     })}
                   </div>
+
+                  {hasHardcodedColors && (
+                    <div className="mt-3 rounded-lg border border-yellow-500/50 bg-yellow-500/10 p-3 text-sm text-yellow-700 dark:text-yellow-400">
+                      <p className="font-medium">
+                        Warning: Hardcoded colors detected
+                      </p>
+                      <p className="mt-1 text-xs">
+                        Colors marked as "keep hardcode" will not change based
+                        on text color or CSS variables. This option is only
+                        recommended for very specific cases, like the Google
+                        logo where you really need to fix the color, but is not
+                        recommended for most use cases.
+                      </p>
+                    </div>
+                  )}
                 </Field>
               )}
             </div>
