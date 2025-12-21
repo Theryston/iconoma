@@ -55,7 +55,7 @@ export async function createServer({ port }: CreateServerOptions = {}) {
 
         template = await fs.readFile("./index.html", "utf-8");
         template = await vite.transformIndexHtml(url, template);
-        render = (await vite.ssrLoadModule("/src/entry-server.jsx")).render;
+        render = (await vite.ssrLoadModule("/src/entry-server.tsx")).render;
       } else {
         template = templateHtml;
         // @ts-ignore
