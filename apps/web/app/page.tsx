@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { Button } from "@iconoma/ui/components/button";
 import { Badge } from "@iconoma/ui/components/badge";
 import {
