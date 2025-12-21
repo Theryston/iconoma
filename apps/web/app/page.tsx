@@ -10,7 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@iconoma/ui/components/card";
-import { Separator } from "@iconoma/ui/components/separator";
 import {
   Package,
   Zap,
@@ -319,16 +318,16 @@ export default function Page() {
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-primary/10 rounded-2xl blur opacity-75 group-hover:opacity-100 transition-opacity" />
             <div className="relative bg-background border rounded-2xl overflow-hidden shadow-2xl">
-              <video
-                className="w-full h-auto"
-                controls
-                poster=""
-                preload="metadata"
-              >
-                <source src="/demo.mov" type="video/quicktime" />
-                <source src="/demo.mov" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+              <div className="aspect-video w-full">
+                <iframe
+                  className="w-full h-full"
+                  src="https://www.youtube-nocookie.com/embed/_WuOqDua4bQ"
+                  title="Iconoma Demo"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </div>
             </div>
           </div>
         </div>
