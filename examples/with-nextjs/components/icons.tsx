@@ -3,8 +3,8 @@
 import * as React from "react";
 import type { SVGProps } from "react";
 
-// <iconoma-icon key="accelerate" name="Accelerate">
-export const Accelerate = (props: SVGProps<SVGSVGElement>) => (
+// <iconoma-icon key="accelerate" name="AccelerateIcon">
+export const AccelerateIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="0 0 1024 1024"
     className="icon"
@@ -37,8 +37,8 @@ export const Accelerate = (props: SVGProps<SVGSVGElement>) => (
 );
 // </iconoma-icon>
 
-// <iconoma-icon key="iconoma" name="Iconoma">
-export const Iconoma = (props: SVGProps<SVGSVGElement>) => (
+// <iconoma-icon key="iconoma" name="IconomaIcon">
+export const IconomaIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     fill="currentColor"
     id="Icons"
@@ -58,8 +58,8 @@ export const Iconoma = (props: SVGProps<SVGSVGElement>) => (
 );
 // </iconoma-icon>
 
-// <iconoma-icon key="smile-plus" name="SmilePlus">
-export const SmilePlus = (props: SVGProps<SVGSVGElement>) => (
+// <iconoma-icon key="smile-plus" name="SmilePlusIcon">
+export const SmilePlusIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
@@ -83,8 +83,8 @@ export const SmilePlus = (props: SVGProps<SVGSVGElement>) => (
 );
 // </iconoma-icon>
 
-// <iconoma-icon key="cloud-upload" name="CloudUpload">
-export const CloudUpload = (props: SVGProps<SVGSVGElement>) => (
+// <iconoma-icon key="cloud-upload" name="CloudUploadIcon">
+export const CloudUploadIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
@@ -105,8 +105,8 @@ export const CloudUpload = (props: SVGProps<SVGSVGElement>) => (
 );
 // </iconoma-icon>
 
-// <iconoma-icon key="file" name="File">
-export const File = (props: SVGProps<SVGSVGElement>) => (
+// <iconoma-icon key="file" name="FileIcon">
+export const FileIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
@@ -126,8 +126,8 @@ export const File = (props: SVGProps<SVGSVGElement>) => (
 );
 // </iconoma-icon>
 
-// <iconoma-icon key="washing-machine" name="WashingMachine">
-export const WashingMachine = (props: SVGProps<SVGSVGElement>) => (
+// <iconoma-icon key="washing-machine" name="WashingMachineIcon">
+export const WashingMachineIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     strokeWidth={1.5}
     viewBox="0 0 24 24"

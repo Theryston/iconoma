@@ -1,5 +1,5 @@
 {
-  "configHash": "644c499b13e8c05175819cfc50f45853bf9028e7f7a90a737bec6fb1be8c33ae",
+  "configHash": "64877d45a48590eed6c558fcb7dccb4433cbbf2212ee1709598ad0ebc70faf0f",
   "icons": {
     "accelerate": {
       "name": "accelerate",
@@ -15,14 +15,11 @@
           "path": "./components/icons.tsx",
           "builtFrom": {
             "svgHash": "9a89d2741d4ae881e62ceb0693273311e9811e3fbb72ca3a7f573727c59cba8f",
-            "configHash": "644c499b13e8c05175819cfc50f45853bf9028e7f7a90a737bec6fb1be8c33ae"
+            "configHash": "64877d45a48590eed6c558fcb7dccb4433cbbf2212ee1709598ad0ebc70faf0f"
           }
         }
       },
-      "colorVariableKeys": [
-        "var(--icons-secondary)",
-        "currentColor"
-      ]
+      "colorVariableKeys": []
     },
     "iconoma": {
       "name": "iconoma",
@@ -41,13 +38,11 @@
           "path": "./components/icons.tsx",
           "builtFrom": {
             "svgHash": "0a82daa9287a4a0d50b35055d1f5a2206549ff992cad5289aca0065e31a54a79",
-            "configHash": "644c499b13e8c05175819cfc50f45853bf9028e7f7a90a737bec6fb1be8c33ae"
+            "configHash": "64877d45a48590eed6c558fcb7dccb4433cbbf2212ee1709598ad0ebc70faf0f"
           }
         }
       },
-      "colorVariableKeys": [
-        "currentColor"
-      ]
+      "colorVariableKeys": []
     },
     "smile-plus": {
       "name": "smile-plus",
@@ -65,7 +60,7 @@
           "path": "./components/icons.tsx",
           "builtFrom": {
             "svgHash": "08ea8cba38d2e9cfe884f7ae0d99ed42dccef65e8a09622b335103f9e0d167bf",
-            "configHash": "644c499b13e8c05175819cfc50f45853bf9028e7f7a90a737bec6fb1be8c33ae"
+            "configHash": "64877d45a48590eed6c558fcb7dccb4433cbbf2212ee1709598ad0ebc70faf0f"
           }
         }
       },
@@ -88,7 +83,7 @@
           "path": "./components/icons.tsx",
           "builtFrom": {
             "svgHash": "7a95ca173a898f5638789cd43d782d524dd62aa2c96ad56f2e85c4bd2aaa86b1",
-            "configHash": "644c499b13e8c05175819cfc50f45853bf9028e7f7a90a737bec6fb1be8c33ae"
+            "configHash": "64877d45a48590eed6c558fcb7dccb4433cbbf2212ee1709598ad0ebc70faf0f"
           }
         }
       },
@@ -109,7 +104,7 @@
           "path": "./components/icons.tsx",
           "builtFrom": {
             "svgHash": "c6b1394da2635d9367aed778c83432709324ac8908a138ca8f34dcd6c3ea29f9",
-            "configHash": "644c499b13e8c05175819cfc50f45853bf9028e7f7a90a737bec6fb1be8c33ae"
+            "configHash": "64877d45a48590eed6c558fcb7dccb4433cbbf2212ee1709598ad0ebc70faf0f"
           }
         }
       },
@@ -127,13 +122,11 @@
           "path": "./components/icons.tsx",
           "builtFrom": {
             "svgHash": "82f793e93b5b2a1d95870668370907f46dacdc3f75f73a38326283878b119d6a",
-            "configHash": "644c499b13e8c05175819cfc50f45853bf9028e7f7a90a737bec6fb1be8c33ae"
+            "configHash": "64877d45a48590eed6c558fcb7dccb4433cbbf2212ee1709598ad0ebc70faf0f"
           }
         }
       },
-      "colorVariableKeys": [
-        "currentColor"
-      ]
+      "colorVariableKeys": []
     }
   }
 }

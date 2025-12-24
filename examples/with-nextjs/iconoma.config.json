@@ -25,5 +25,6 @@
   ],
   "colorVariables": [
     "--icons-secondary"
-  ]
+  ],
+  "componentNameFormat": "{name}Icon"
 }
