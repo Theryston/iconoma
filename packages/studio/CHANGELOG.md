@@ -1,5 +1,11 @@
 # @iconoma/studio
 
+## 0.2.2
+
+### Patch Changes
+
+- 318f417: fix the screen y size
+
 ## 0.2.1
 
 ### Patch Changes
