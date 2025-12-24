@@ -1,5 +1,11 @@
 # @iconoma/studio
 
+## 0.2.0
+
+### Minor Changes
+
+- 498c72d: add "componentNameFormat" support for custom suffix component name
+
 ## 0.1.0
 
 ### Minor Changes
