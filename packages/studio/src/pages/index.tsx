@@ -114,7 +114,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex h-[calc(100vh-4rem)] flex-col gap-6 p-6">
+    <div className="flex h-fit flex-col gap-6 p-6">
       <div className="flex items-center gap-4">
         <div className="flex-1">
           <Input
@@ -157,7 +157,7 @@ export default function Home() {
           </div>
         </div>
       ) : viewType === "grid" ? (
-        <div className="grid grid-cols-8 gap-4 overflow-y-auto">
+        <div className="grid grid-cols-8 gap-4 h-fit">
           {filteredIcons.map((item) => (
             <button
               key={item.iconKey}
@@ -197,7 +197,7 @@ export default function Home() {
           ))}
         </div>
       ) : (
-        <div className="flex flex-col gap-2 overflow-y-auto">
+        <div className="flex flex-col gap-2 h-fit">
           {filteredIcons.map((item) => (
             <button
               key={item.iconKey}
