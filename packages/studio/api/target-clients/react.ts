@@ -257,7 +257,7 @@ export class ReactTargetClient implements TargetClient {
   ): Promise<void> {
     const content = await getIconContent(icon);
 
-    const componentName = keyToComponentName(iconKey);
+    const componentName = await keyToComponentName(iconKey);
 
     const config = await getConfig();
 
@@ -356,7 +356,7 @@ export class ReactTargetClient implements TargetClient {
       return;
     }
 
-    const componentName = keyToComponentName(iconKey);
+    const componentName = await keyToComponentName(iconKey);
     const parsed = splitSvgrComponentSource(content);
 
     const defaultName = getDefaultExportName(parsed.exports) ?? componentName;

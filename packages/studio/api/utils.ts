@@ -113,9 +113,15 @@ export function toPascalCase(input: string): string {
     .join("");
 }
 
-export function keyToComponentName(key: string): string {
-  const pascalCase = toPascalCase(key);
-  return pascalCase;
+export async function keyToComponentName(key: string): Promise<string> {
+  let name = toPascalCase(key);
+  const config = await getConfig();
+
+  if (config?.componentNameFormat) {
+    name = config.componentNameFormat.replace("{name}", name);
+  }
+
+  return name;
 }
 
 export async function setContent(

@@ -15,7 +15,7 @@ export class ReactNativeTargetClient
   ): Promise<void> {
     const content = await getIconContent(icon);
 
-    const componentName = keyToComponentName(iconKey);
+    const componentName = await keyToComponentName(iconKey);
 
     const config = await getConfig();
 

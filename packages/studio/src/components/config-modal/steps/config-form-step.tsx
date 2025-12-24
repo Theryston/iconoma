@@ -137,6 +137,7 @@ export function ConfigFormStep({
           />
 
           <ExtraTargetsSection form={form} />
+          <ComponentNameFormatSection form={form} />
           <ColorVariablesSection form={form} />
           <Accordion
             type="multiple"
@@ -269,13 +270,12 @@ function ExtraTargetsSection({ form }: { form: UseFormReturn<ConfigInput> }) {
     } else {
       const targetConfig = AVAILABLE_TARGETS.find((t) => t.id === targetId);
       if (targetConfig) {
-        const newTargets = [
-          ...(currentTargets ?? []),
-          {
-            targetId,
-            outputPath: `./${targetConfig.id}/icons/{name}${targetConfig.extension[0]}`,
-          },
-        ];
+        const newTarget = {
+          targetId,
+          outputPath: `./${targetConfig.id}/icons/{name}${targetConfig.extension[0]}`,
+        };
+
+        const newTargets = [...(currentTargets ?? []), newTarget];
         form.setValue("extraTargets", newTargets, { shouldValidate: true });
       }
     }
@@ -387,6 +387,48 @@ function ExtraTargetsSection({ form }: { form: UseFormReturn<ConfigInput> }) {
         "message" in fieldState &&
         !Array.isArray(fieldState) && <FieldError errors={[fieldState]} />}
     </Field>
+  );
+}
+
+function ComponentNameFormatSection({
+  form,
+}: {
+  form: UseFormReturn<ConfigInput>;
+}) {
+  const extraTargets = form.watch("extraTargets");
+  const hasReactOrReactNativeTarget = extraTargets?.some(
+    (target) =>
+      target.targetId === "react" || target.targetId === "react-native"
+  );
+
+  if (!hasReactOrReactNativeTarget) return null;
+
+  return (
+    <Controller
+      name="componentNameFormat"
+      control={form.control}
+      render={({ field, fieldState }) => (
+        <Field>
+          <FieldLabel>Component Name Format</FieldLabel>
+          <FieldDescription>
+            Customize how component names are generated from icon keys.
+          </FieldDescription>
+          <div className="flex flex-col gap-1.5 mt-3">
+            <Input
+              placeholder="e.g. {name}Icon or Icon{name}"
+              value={field.value || ""}
+              onChange={field.onChange}
+              className={cn(fieldState.invalid && "border-destructive")}
+            />
+            <p className="text-muted-foreground text-xs">
+              Auto generate component name from icon key. <br />
+              Example: {"{name}"}Icon → HomeIcon
+            </p>
+            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+          </div>
+        </Field>
+      )}
+    />
   );
 }
 

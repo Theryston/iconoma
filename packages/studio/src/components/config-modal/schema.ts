@@ -32,6 +32,7 @@ export const configFormSchema = z.object({
     )
     .default([]),
   colorVariables: z.array(z.string()).default([]),
+  componentNameFormat: z.string().optional(),
 });
 
 export const configSchema = configFormSchema
@@ -113,6 +114,14 @@ export const configSchema = configFormSchema
       .array(z.string())
       .default([])
       .transform((val) => val.filter((v) => v.trim().length > 0)),
+    extraTargets: z
+      .array(
+        z.object({
+          targetId: z.string(),
+          outputPath: z.string().min(1),
+        })
+      )
+      .default([]),
   })
   .superRefine((data, ctx) => {
     if (data.svg.inLock && data.extraTargets.length === 0) {
@@ -147,6 +156,24 @@ export const configSchema = configFormSchema
         });
       }
     });
+
+    if (data.componentNameFormat && data.componentNameFormat.trim() !== "") {
+      const hasReactOrReactNativeTarget = data.extraTargets.some(
+        (target) =>
+          target.targetId === "react" || target.targetId === "react-native"
+      );
+
+      if (
+        hasReactOrReactNativeTarget &&
+        !data.componentNameFormat.includes("{name}")
+      ) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: `Component name format must include {name} placeholder`,
+          path: ["componentNameFormat"],
+        });
+      }
+    }
   });
 
 export type ConfigInput = z.input<typeof configFormSchema>;

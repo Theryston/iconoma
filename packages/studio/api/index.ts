@@ -143,6 +143,15 @@ apiRoutes.post("/config/changes", async (req, res) => {
     }
   }
 
+  const newFormat = newConfig.componentNameFormat?.trim() || undefined;
+  const currentFormat = currentConfig.componentNameFormat?.trim() || undefined;
+
+  if (newFormat !== currentFormat) {
+    changes.push({
+      type: "REGENERATE_ALL",
+    });
+  }
+
   if (JSON.stringify(newConfig.svgo) !== JSON.stringify(currentConfig.svgo)) {
     changes.push({
       type: "REGENERATE_ALL",
@@ -181,7 +190,7 @@ apiRoutes.get("/icons", async (req, res) => {
       iconKey,
       icon,
       svgContent,
-      componentName: keyToComponentName(iconKey),
+      componentName: await keyToComponentName(iconKey),
     };
   });
 
@@ -212,7 +221,7 @@ apiRoutes.post("/icons/create", async (req, res) => {
     return res.status(500).json({ error: "Icon not found after creation" });
   }
 
-  res.json({ icon, componentName: keyToComponentName(body.name) });
+  res.json({ icon, componentName: await keyToComponentName(body.name) });
 });
 
 apiRoutes.get("/icons/:iconKey", async (req, res) => {
@@ -236,7 +245,7 @@ apiRoutes.get("/icons/:iconKey", async (req, res) => {
 
   res.json({
     icon,
-    componentName: keyToComponentName(iconKey),
+    componentName: await keyToComponentName(iconKey),
     svgContent,
   });
 });

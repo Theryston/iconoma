@@ -13,6 +13,7 @@ export type Config = {
   extraTargets: ExtraTarget[];
   colorVariables: string[];
   svgo: any;
+  componentNameFormat?: string;
 };
 
 export type LockFileIcon = {

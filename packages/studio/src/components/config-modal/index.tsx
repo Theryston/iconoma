@@ -77,6 +77,7 @@ export function ConfigModal({
       ),
       extraTargets: [],
       colorVariables: [],
+      componentNameFormat: undefined,
     },
   });
 
