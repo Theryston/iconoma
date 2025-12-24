@@ -1,5 +1,11 @@
 # @iconoma/studio
 
+## 0.2.1
+
+### Patch Changes
+
+- ee1cbe4: add square view box and color name detect
+
 ## 0.2.0
 
 ### Minor Changes
