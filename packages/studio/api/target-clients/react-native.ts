@@ -1,6 +1,6 @@
 import { transform } from "@svgr/core";
 import { LockFileIcon } from "../types";
-import { getConfig, getIconContent, toPascalFromSeparated } from "../utils";
+import { getConfig, getIconContent, keyToComponentName } from "../utils";
 import { TargetClient } from "./interface";
 import { ReactTargetClient } from "./react";
 
@@ -15,7 +15,7 @@ export class ReactNativeTargetClient
   ): Promise<void> {
     const content = await getIconContent(icon);
 
-    const componentName = toPascalFromSeparated(iconKey);
+    const componentName = keyToComponentName(iconKey);
 
     const config = await getConfig();
 

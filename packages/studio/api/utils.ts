@@ -104,13 +104,18 @@ export async function getIconContent(icon: LockFileIcon): Promise<string> {
   return content;
 }
 
-export function toPascalFromSeparated(input: string): string {
+export function toPascalCase(input: string): string {
   return String(input)
     .trim()
     .split(/[^a-zA-Z0-9]+/)
     .filter(Boolean)
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join("");
+}
+
+export function keyToComponentName(key: string): string {
+  const pascalCase = toPascalCase(key);
+  return pascalCase;
 }
 
 export async function setContent(

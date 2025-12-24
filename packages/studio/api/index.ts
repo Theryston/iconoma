@@ -6,7 +6,7 @@ import {
   getLockFile,
   getPwd,
   setConfig,
-  toPascalFromSeparated,
+  keyToComponentName,
   getIconContent,
 } from "./utils";
 import path from "node:path";
@@ -181,7 +181,7 @@ apiRoutes.get("/icons", async (req, res) => {
       iconKey,
       icon,
       svgContent,
-      componentName: toPascalFromSeparated(iconKey),
+      componentName: keyToComponentName(iconKey),
     };
   });
 
@@ -212,7 +212,7 @@ apiRoutes.post("/icons/create", async (req, res) => {
     return res.status(500).json({ error: "Icon not found after creation" });
   }
 
-  res.json({ icon, componentName: toPascalFromSeparated(body.name) });
+  res.json({ icon, componentName: keyToComponentName(body.name) });
 });
 
 apiRoutes.get("/icons/:iconKey", async (req, res) => {
@@ -236,7 +236,7 @@ apiRoutes.get("/icons/:iconKey", async (req, res) => {
 
   res.json({
     icon,
-    componentName: toPascalFromSeparated(iconKey),
+    componentName: keyToComponentName(iconKey),
     svgContent,
   });
 });

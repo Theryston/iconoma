@@ -3,7 +3,7 @@ import {
   getConfig,
   getIconContent,
   getPwd,
-  toPascalFromSeparated,
+  keyToComponentName,
 } from "../utils";
 import { TargetClient } from "./interface";
 import { transform } from "@svgr/core";
@@ -257,7 +257,7 @@ export class ReactTargetClient implements TargetClient {
   ): Promise<void> {
     const content = await getIconContent(icon);
 
-    const componentName = toPascalFromSeparated(iconKey);
+    const componentName = keyToComponentName(iconKey);
 
     const config = await getConfig();
 
@@ -356,7 +356,7 @@ export class ReactTargetClient implements TargetClient {
       return;
     }
 
-    const componentName = toPascalFromSeparated(iconKey);
+    const componentName = keyToComponentName(iconKey);
     const parsed = splitSvgrComponentSource(content);
 
     const defaultName = getDefaultExportName(parsed.exports) ?? componentName;
