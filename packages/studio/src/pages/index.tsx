@@ -167,7 +167,7 @@ export default function Home() {
               <div className="flex items-center justify-center w-full aspect-square p-4">
                 <SvgPreview
                   content={item.svgContent}
-                  className="w-full h-full max-w-[64px] max-h-[64px]"
+                  className="w-full h-full max-w-[64px] flex justify-center items-center object-contain"
                 />
               </div>
               <div className="flex flex-col items-center gap-2 w-full min-w-0">
@@ -207,7 +207,7 @@ export default function Home() {
               <div className="flex items-center justify-center w-16 h-16 shrink-0">
                 <SvgPreview
                   content={item.svgContent}
-                  className="w-full h-full max-w-[48px] max-h-[48px]"
+                  className="w-full h-full max-w-[48px] flex justify-center items-center object-contain"
                 />
               </div>
               <div className="flex-1 min-w-0">
@@ -274,7 +274,7 @@ export default function Home() {
               <div className="flex items-center justify-center p-8 rounded-xl border bg-gradient-to-br from-card to-card/50">
                 <SvgPreview
                   content={selectedIcon.svgContent}
-                  className="w-full h-full max-w-[200px] max-h-[200px]"
+                  className="w-full h-full max-w-[200px] flex justify-center items-center object-contain"
                 />
               </div>
 
