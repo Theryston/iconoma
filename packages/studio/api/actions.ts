@@ -17,6 +17,7 @@ import { TargetClient } from "./target-clients/interface";
 import { ReactTargetClient } from "./target-clients/react";
 import { ReactNativeTargetClient } from "./target-clients/react-native";
 import { mapColors } from "./svgo-plugin-map-colors";
+import { convertToSquareViewBoxPlugin } from "./svgo-plugin-square-view-box";
 
 export async function actionsWorker({
   actionId,
@@ -379,6 +380,7 @@ async function createIcon(action: ActionModel) {
     plugins: [
       ...(config.svgo?.plugins ?? []),
       "convertStyleToAttrs",
+      convertToSquareViewBoxPlugin,
       ...(colorMap
         ? [
             mapColors({
