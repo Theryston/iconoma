@@ -181,7 +181,7 @@ apiRoutes.get("/icons", async (req, res) => {
       iconKey,
       icon,
       svgContent,
-      pascalName: toPascalFromSeparated(iconKey),
+      componentName: toPascalFromSeparated(iconKey),
     };
   });
 
@@ -212,7 +212,7 @@ apiRoutes.post("/icons/create", async (req, res) => {
     return res.status(500).json({ error: "Icon not found after creation" });
   }
 
-  res.json({ icon, pascalName: toPascalFromSeparated(body.name) });
+  res.json({ icon, componentName: toPascalFromSeparated(body.name) });
 });
 
 apiRoutes.get("/icons/:iconKey", async (req, res) => {
@@ -236,7 +236,7 @@ apiRoutes.get("/icons/:iconKey", async (req, res) => {
 
   res.json({
     icon,
-    pascalName: toPascalFromSeparated(iconKey),
+    componentName: toPascalFromSeparated(iconKey),
     svgContent,
   });
 });

@@ -6,7 +6,7 @@ export function useCreateIcon() {
   const queryClient = useQueryClient();
 
   return useMutation<
-    { icon: LockFileIcon; pascalName: string },
+    { icon: LockFileIcon; componentName: string },
     Error,
     {
       name: string;
@@ -36,7 +36,7 @@ export function useIcons() {
         iconKey: string;
         icon: LockFileIcon;
         svgContent: string;
-        pascalName: string;
+        componentName: string;
       }>;
     },
     Error
@@ -48,7 +48,7 @@ export function useIcons() {
 
 export function useIcon(iconKey: string) {
   return useQuery<
-    { icon: LockFileIcon; pascalName: string; svgContent: string },
+    { icon: LockFileIcon; componentName: string; svgContent: string },
     Error
   >({
     queryKey: ["icon", iconKey],

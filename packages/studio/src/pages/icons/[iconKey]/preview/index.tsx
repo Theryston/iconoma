@@ -62,7 +62,7 @@ export default function IconPreview() {
     );
   }
 
-  const { pascalName, svgContent, icon } = iconData;
+  const { componentName, svgContent, icon } = iconData;
 
   return (
     <div className="flex h-[calc(100vh-4rem)] flex-col gap-6 p-6">
@@ -108,7 +108,7 @@ export default function IconPreview() {
 
         <IconExamples
           iconKey={iconKey || ""}
-          pascalName={pascalName}
+          componentName={componentName}
           svgContent={svgContent}
           colorVariableKeys={icon.colorVariableKeys}
         />

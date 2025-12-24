@@ -8,14 +8,14 @@ import type { ExtraTarget } from "../../api/types";
 
 type IconExamplesProps = {
   iconKey: string;
-  pascalName: string;
+  componentName: string;
   svgContent: string;
   colorVariableKeys?: string[];
 };
 
 export function IconExamples({
   iconKey,
-  pascalName,
+  componentName,
   svgContent,
   colorVariableKeys = [],
 }: IconExamplesProps) {
@@ -88,7 +88,7 @@ export function IconExamples({
     .filter(Boolean) as string[];
 
   const generateReactExample = () => {
-    const importLine = `import { ${pascalName} } from "${getReactPath()}";`;
+    const importLine = `import { ${componentName} } from "${getReactPath()}";`;
     const styleEntries: string[] = [];
 
     styleEntries.push(`color: "${previewColor}"`);
@@ -102,7 +102,7 @@ export function IconExamples({
       return `${importLine}
 
 <div className="text-2xl">
-  <${pascalName} />
+  <${componentName} />
 </div>`;
     }
 
@@ -110,7 +110,7 @@ export function IconExamples({
     return `${importLine}
 
 <div style={${styleObject}} className="text-2xl">
-  <${pascalName} />
+  <${componentName} />
 </div>`;
   };
 
@@ -130,7 +130,7 @@ ${svgContent}
   };
 
   const generateReactNativeExample = () => {
-    const importLine = `import { ${pascalName} } from "${getReactNativePath()}";`;
+    const importLine = `import { ${componentName} } from "${getReactNativePath()}";`;
     const props: string[] = [];
 
     props.push(`color="${previewColor}"`);
@@ -139,7 +139,7 @@ ${svgContent}
 
     let example = `${importLine}
 
-<${pascalName} ${props.join(" ")} />`;
+<${componentName} ${props.join(" ")} />`;
 
     return example;
   };

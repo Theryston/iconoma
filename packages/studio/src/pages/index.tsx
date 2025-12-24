@@ -52,7 +52,7 @@ export default function Home() {
     iconKey: string;
     icon: any;
     svgContent: string;
-    pascalName: string;
+    componentName: string;
   } | null>(null);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
@@ -280,7 +280,7 @@ export default function Home() {
 
               <IconExamples
                 iconKey={selectedIcon.iconKey}
-                pascalName={selectedIcon.pascalName}
+                componentName={selectedIcon.componentName}
                 svgContent={selectedIcon.svgContent}
                 colorVariableKeys={selectedIcon.icon.colorVariableKeys}
               />
