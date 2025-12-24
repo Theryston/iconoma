@@ -54,6 +54,57 @@ function rgbToHex(r: number, g: number, b: number) {
   return `#${to2hex(r)}${to2hex(g)}${to2hex(b)}`;
 }
 
+const CSS_NAMED_COLORS: Record<string, string> = {
+  black: "#000000",
+  white: "#ffffff",
+  red: "#ff0000",
+  green: "#008000",
+  blue: "#0000ff",
+  yellow: "#ffff00",
+  cyan: "#00ffff",
+  magenta: "#ff00ff",
+  silver: "#c0c0c0",
+  gray: "#808080",
+  grey: "#808080",
+  maroon: "#800000",
+  olive: "#808000",
+  lime: "#00ff00",
+  aqua: "#00ffff",
+  teal: "#008080",
+  navy: "#000080",
+  fuchsia: "#ff00ff",
+  purple: "#800080",
+  orange: "#ffa500",
+  pink: "#ffc0cb",
+  brown: "#a52a2a",
+};
+
+function getColorNameHex(colorName: string): string | null {
+  return CSS_NAMED_COLORS[colorName.toLowerCase()] ?? null;
+}
+
+function getHexVariations(hex: string): string[] {
+  const variations: string[] = [hex.toLowerCase()];
+  const hexNoHash = hex.slice(1);
+
+  if (hexNoHash.length === 3) {
+    const expanded = expandHex(hexNoHash);
+    variations.push(`#${expanded}`);
+  }
+
+  if (hexNoHash.length === 6) {
+    const canShort =
+      hexNoHash[0] === hexNoHash[1] &&
+      hexNoHash[2] === hexNoHash[3] &&
+      hexNoHash[4] === hexNoHash[5];
+    if (canShort) {
+      variations.push(`#${hexNoHash[0]}${hexNoHash[2]}${hexNoHash[4]}`);
+    }
+  }
+
+  return [...new Set(variations)];
+}
+
 function normalizeColor(input: string | undefined | null): string | null {
   if (input == null) return null;
   const v = String(input).trim();
@@ -129,7 +180,26 @@ function makeNormalizedMap(map: ColorMap) {
   const norm = new Map<string, string>();
   for (const [from, to] of Object.entries(map || {})) {
     const k = normalizeColor(from);
-    if (k) norm.set(k, String(to));
+    if (!k) continue;
+
+    const targetValue = String(to);
+
+    norm.set(k, targetValue);
+
+    const colorNameHex = getColorNameHex(k);
+    if (colorNameHex) {
+      const hexVariations = getHexVariations(colorNameHex);
+      for (const hexVar of hexVariations) {
+        norm.set(hexVar, targetValue);
+      }
+    }
+
+    if (k.startsWith("#")) {
+      const hexVariations = getHexVariations(k);
+      for (const hexVar of hexVariations) {
+        norm.set(hexVar, targetValue);
+      }
+    }
   }
   return norm;
 }
@@ -182,23 +252,30 @@ export const mapColorsPluginBase = {
       let text = String(cssText);
 
       for (const [fromNorm, to] of colorMap.entries()) {
-        if (!fromNorm.startsWith("#")) continue;
+        if (fromNorm.startsWith("#")) {
+          const hex = fromNorm.slice(1);
+          const hex6 = hex.length >= 6 ? hex.slice(0, 6) : expandHex(hex);
+          const hex3 = hex.length === 3 ? hex : null;
 
-        const hex = fromNorm.slice(1);
-        const hex6 = hex.length >= 6 ? hex.slice(0, 6) : hex;
+          const canShort =
+            hex6.length === 6 &&
+            hex6[0] === hex6[1] &&
+            hex6[2] === hex6[3] &&
+            hex6[4] === hex6[5];
 
-        const canShort =
-          hex6.length === 6 &&
-          hex6[0] === hex6[1] &&
-          hex6[2] === hex6[3] &&
-          hex6[4] === hex6[5];
+          const short = canShort ? `#${hex6[0]}${hex6[2]}${hex6[4]}` : null;
 
-        const short = canShort ? `#${hex6[0]}${hex6[2]}${hex6[4]}` : null;
+          const patterns = [new RegExp(`#${hex6}`, "gi")];
+          if (short) patterns.push(new RegExp(short, "gi"));
+          if (hex3 && hex3 !== short)
+            patterns.push(new RegExp(`#${hex3}`, "gi"));
 
-        const patterns = [new RegExp(`#${hex6}`, "gi")];
-        if (short) patterns.push(new RegExp(short, "gi"));
-
-        for (const re of patterns) text = text.replace(re, to);
+          for (const re of patterns) text = text.replace(re, to);
+        } else {
+          const escaped = fromNorm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+          const regex = new RegExp(`\\b${escaped}\\b`, "gi");
+          text = text.replace(regex, to);
+        }
       }
 
       return text;
