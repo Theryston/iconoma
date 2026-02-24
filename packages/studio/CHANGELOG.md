@@ -1,5 +1,11 @@
 # @iconoma/studio
 
+## 0.2.3
+
+### Patch Changes
+
+- 94bfb17: Increase JSON body size limit to 500MB
+
 ## 0.2.2
 
 ### Patch Changes
