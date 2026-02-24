@@ -1,5 +1,12 @@
 # @iconoma/cli
 
+## 0.0.9
+
+### Patch Changes
+
+- Updated dependencies [94bfb17]
+  - @iconoma/studio@0.2.3
+
 ## 0.0.8
 
 ### Patch Changes
