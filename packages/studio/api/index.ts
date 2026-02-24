@@ -15,7 +15,7 @@ import { Change, Config } from "./types";
 
 const apiRoutes: Router = Router();
 
-apiRoutes.use(json());
+apiRoutes.use(json({ limit: "500mb" }));
 
 apiRoutes.get("/pwd", async (req, res) => {
   res.json({ pwd: await getPwd() });
@@ -38,15 +38,15 @@ apiRoutes.post("/config/changes", async (req, res) => {
   const addedExtraTargets = newConfig.extraTargets.filter(
     (newTarget) =>
       !currentConfig.extraTargets.some(
-        (currentTarget) => currentTarget.targetId === newTarget.targetId
-      )
+        (currentTarget) => currentTarget.targetId === newTarget.targetId,
+      ),
   );
 
   const removedExtraTargets = currentConfig.extraTargets.filter(
     (currentTarget) =>
       !newConfig.extraTargets.some(
-        (newTarget) => newTarget.targetId === currentTarget.targetId
-      )
+        (newTarget) => newTarget.targetId === currentTarget.targetId,
+      ),
   );
 
   const changedExtraTargets = newConfig.extraTargets
@@ -54,13 +54,13 @@ apiRoutes.post("/config/changes", async (req, res) => {
       currentConfig.extraTargets.some(
         (currentTarget) =>
           currentTarget.targetId === newTarget.targetId &&
-          currentTarget.outputPath !== newTarget.outputPath
-      )
+          currentTarget.outputPath !== newTarget.outputPath,
+      ),
     )
     .filter(
       (newTarget) =>
         !addedExtraTargets.some((t) => t.targetId === newTarget.targetId) &&
-        !removedExtraTargets.some((t) => t.targetId === newTarget.targetId)
+        !removedExtraTargets.some((t) => t.targetId === newTarget.targetId),
     );
 
   const changes: Change[] = [];
