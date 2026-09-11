@@ -50,8 +50,11 @@ ENV NODE_ENV=production
 # Uncomment to disable telemetry during build:
 # ENV NEXT_TELEMETRY_DISABLED=1
 
-# Build Next.js application
-RUN corepack enable pnpm && pnpm --filter web build
+# Build Next.js application from the app directory so Next.js places the
+# standalone server at /app/apps/web/.next/standalone/server.js.
+WORKDIR /app/apps/web
+RUN corepack enable pnpm && pnpm build \
+    && test -f .next/standalone/server.js
 
 
 # ============================================
