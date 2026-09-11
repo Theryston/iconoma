@@ -50,11 +50,9 @@ ENV NODE_ENV=production
 # Uncomment to disable telemetry during build:
 # ENV NEXT_TELEMETRY_DISABLED=1
 
-# Build Next.js application from the app directory so Next.js places the
-# standalone server at /app/apps/web/.next/standalone/server.js.
+# Build Next.js application from the app directory.
 WORKDIR /app/apps/web
-RUN corepack enable pnpm && pnpm build \
-    && test -f .next/standalone/server.js
+RUN corepack enable pnpm && pnpm build
 
 
 # ============================================
@@ -74,18 +72,10 @@ ENV HOSTNAME="0.0.0.0"
 # Uncomment to disable Next.js telemetry at runtime:
 # ENV NEXT_TELEMETRY_DISABLED=1
 
-# Copy production assets
-COPY --from=builder --chown=node:node /app/apps/web/public ./public
-
-# Set the correct permission for prerender cache
-RUN mkdir .next && chown node:node .next
-
-# Automatically leverage Next.js output traces to reduce image size
-COPY --from=builder --chown=node:node /app/apps/web/.next/standalone ./
-COPY --from=builder --chown=node:node /app/apps/web/.next/static ./.next/static
-
-# If you want to persist the fetch cache generated during the build:
-# COPY --from=builder --chown=node:node /app/.next/cache ./.next/cache
+# Copy the built monorepo. Running `next start` from the web workspace avoids
+# depending on the location Next.js chooses for standalone output in a pnpm
+# monorepo.
+COPY --from=builder --chown=node:node /app /app
 
 # Switch to non-root user
 USER node
@@ -93,5 +83,5 @@ USER node
 # Expose Next.js port
 EXPOSE 3000
 
-# Start Next.js standalone server
-CMD ["node", "server.js"]
+# Start Next.js from the web workspace
+CMD ["corepack", "pnpm", "--dir", "apps/web", "start"]
